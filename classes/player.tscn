@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp0q2snacikok"]
+[gd_scene load_steps=13 format=3 uid="uid://cp0q2snacikok"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e06wh"]
+[ext_resource type="Script" path="res://scripts/player_hand.gd" id="2_6g0fi"]
+[ext_resource type="PackedScene" uid="uid://cdpsuo4ubwrb4" path="res://assets/models/bomb.glb" id="2_cmxb5"]
 [ext_resource type="AudioStream" uid="uid://bm7vas4j6606x" path="res://assets/audio/click_in.wav" id="2_ovt5n"]
 [ext_resource type="AudioStream" uid="uid://c8tcu5a3q7rnd" path="res://assets/audio/click_out.wav" id="3_5xlte"]
+[ext_resource type="PackedScene" uid="uid://d1yhtgplfxot1" path="res://classes/items/bomb.tscn" id="3_7lxoh"]
 [ext_resource type="AudioStream" uid="uid://dw5xmxrkh460m" path="res://assets/audio/jump.wav" id="4_qctkc"]
 [ext_resource type="AudioStream" uid="uid://bvow8nunp2ose" path="res://assets/audio/land.wav" id="5_uyeiu"]
 [ext_resource type="AudioStream" uid="uid://csw07gy13fbvo" path="res://assets/audio/splash_in.mp3" id="6_1md7h"]
@@ -32,6 +35,14 @@ shape = SubResource("CapsuleShape3D_u16lm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 current = true
 near = 0.125
+
+[node name="hand" type="Node3D" parent="camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, -0.5)
+script = ExtResource("2_6g0fi")
+pf_bomb = ExtResource("3_7lxoh")
+
+[node name="bomb" parent="camera/hand" instance=ExtResource("2_cmxb5")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="sfx_click_in" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ovt5n")

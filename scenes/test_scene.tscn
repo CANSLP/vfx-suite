@@ -325,10 +325,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00075, 3, -7.99804)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99925, 3, -7.99804)
 
 [node name="wall_unit2" parent="geometry" instance=ExtResource("21_sdvdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99925, 0, -11.998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -12)
 
 [node name="wall_unit3" parent="geometry" instance=ExtResource("21_sdvdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99925, 0, -13.998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -14)
 
 [node name="wall_slope6" parent="geometry" instance=ExtResource("11_ssfd3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.00075, 3, -8.99804)
@@ -385,7 +385,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.999
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.00075, 3, -9.99804)
 
 [node name="stairs5" parent="geometry" instance=ExtResource("16_bg7qi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.0007, 0, -6.99804)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0, -7)
 
 [node name="fence16" parent="geometry" instance=ExtResource("19_nap46")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0007, 1, -8.99804)
@@ -409,3 +409,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99925, 0, -19.998)
 
 [node name="Bomb" parent="." instance=ExtResource("22_4rpym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.25, -4.5)
+
+[node name="item bin" type="Node3D" parent="."]
