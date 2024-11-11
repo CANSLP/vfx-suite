@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://db0rbr61h7al2"]
+
+[ext_resource type="PackedScene" uid="uid://cfrhb7djwm7xa" path="res://assets/models/architecture/fence.glb" id="1_hdpy8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tlbuy"]
+points = PackedVector3Array(-0.0200006, -2.54745e-09, -0.92502, -0.0200006, 0.874902, -0.950078, -0.0100043, 0.0936766, -1, 0.0199962, -2.54745e-09, -0.92502, -0.0200006, -2.54745e-09, 0.924824, -0.0100004, 1, -0.912686, -0.0100043, 0.749902, -1, -0.0200006, 0.874902, 0.949883, 0.00999602, 0.0936766, -1, 0.0199962, 0.874902, -0.950078, 0.0200001, 0.874902, 0.949883, 0.0199962, -2.54745e-09, 0.924824, -0.0100004, 0.0936766, 0.999805, 0.00999602, 1, -0.912686, -0.0100004, 1, 0.912295, 0.00999602, 0.749902, -1, -0.0100004, 0.749902, 0.999805, 0.00999602, 1, 0.912295, 0.00999602, 0.749902, 0.999805, 0.00999602, 0.0936766, 0.999805)
+
+[node name="fence" instance=ExtResource("1_hdpy8")]
+
+[node name="fence" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="fence" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_tlbuy")

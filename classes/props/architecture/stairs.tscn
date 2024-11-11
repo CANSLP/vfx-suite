@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c243d6xnnhimv"]
+
+[ext_resource type="PackedScene" uid="uid://dp0ch3l7qcr4f" path="res://assets/models/architecture/stairs.glb" id="1_jnwl2"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dftsc"]
+data = PackedVector3Array(-1, 0, 1, -1, 1, -1, -1, 1, 1, -1, 0, 1, -1, 0, -1, -1, 1, -1, -1, 0, -1, 1, 0, -1, -1, 1, -1, 1, 0, 1, -1, 0, 1, -1, 1, 1, -1, 0, -1, 1, 0, 1, 1, 0, -1, -1, 0, -1, -1, 0, 1, 1, 0, 1, 1, 0, -1, -1, 1, 1, -1, 1, -1, 1, 0, -1, 1, 0, 1, -1, 1, 1)
+
+[node name="stairs" instance=ExtResource("1_jnwl2")]
+
+[node name="stairs_collision" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs_collision" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs_collision/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_dftsc")
+
+[node name="stairs" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

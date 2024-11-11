@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1yhtgplfxot1"]
+
+[ext_resource type="PackedScene" uid="uid://cdpsuo4ubwrb4" path="res://assets/models/bomb.glb" id="1_heia3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ktwg6"]
+radius = 0.25
+
+[node name="bomb" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ktwg6")
+
+[node name="mesh" parent="." instance=ExtResource("1_heia3")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
