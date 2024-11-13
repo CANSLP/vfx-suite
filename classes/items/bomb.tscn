@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1yhtgplfxot1"]
+[gd_scene load_steps=6 format=3 uid="uid://d1yhtgplfxot1"]
 
 [ext_resource type="Script" path="res://scripts/bomb.gd" id="1_bhpnu"]
 [ext_resource type="PackedScene" uid="uid://cdpsuo4ubwrb4" path="res://assets/models/bomb.glb" id="1_heia3"]
 [ext_resource type="Material" uid="uid://dnr4ulqqw2wqf" path="res://assets/materials/fx/fx_bomb_seam.tres" id="2_bytvm"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tnb4j"]
+bounce = 0.25
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_ktwg6"]
 radius = 0.25
 
 [node name="bomb" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_tnb4j")
 script = ExtResource("1_bhpnu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

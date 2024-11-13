@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://8emqxmwg8tar"]
+[gd_scene load_steps=17 format=4 uid="uid://8emqxmwg8tar"]
 
 [ext_resource type="Script" path="res://scripts/bomb_explosion.gd" id="1_ul0d4"]
 [ext_resource type="Material" uid="uid://bcskofc8fdqkc" path="res://assets/materials/fx/fx_explosion_rims.tres" id="2_4u4gc"]
+[ext_resource type="Material" uid="uid://cxyxmn0oxsilx" path="res://assets/materials/fx/fx_bomb_blast.tres" id="3_b538k"]
+[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="4_k7glb"]
+[ext_resource type="Shader" path="res://assets/shaders/bomb_rays.gdshader" id="5_yrocg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ey28t"]
 
@@ -35,6 +38,32 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0h3oe")
 
+[sub_resource type="SphereMesh" id="SphereMesh_ba8e2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwf5o"]
+render_priority = 0
+shader = ExtResource("4_k7glb")
+shader_parameter/scale = 0.5
+shader_parameter/color = Vector3(0.5, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jesv4"]
+
+[sub_resource type="Curve" id="Curve_sttem"]
+max_value = 25.0
+_data = [Vector2(0, 25), 0.0, -116.14, 0, 0, Vector2(1, 0), 17.4647, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_t75t1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_082g5"]
+render_priority = 0
+shader = ExtResource("5_yrocg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
+size = Vector2(0.1, 1)
+
+[sub_resource type="Gradient" id="Gradient_0kesd"]
+
 [node name="BombExplosion" type="Node3D"]
 script = ExtResource("1_ul0d4")
 
@@ -47,3 +76,44 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 material_override = ExtResource("2_4u4gc")
 mesh = SubResource("ArrayMesh_e8crt")
 skeleton = NodePath("")
+
+[node name="blast" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+material_override = ExtResource("3_b538k")
+mesh = SubResource("SphereMesh_ba8e2")
+
+[node name="smoke" type="CPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_jwf5o")
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_jesv4")
+spread = 180.0
+gravity = Vector3(0, 2, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+damping_min = 0.75
+damping_max = 1.25
+damping_curve = SubResource("Curve_sttem")
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_t75t1")
+
+[node name="rays" type="CPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_082g5")
+emitting = false
+amount = 32
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_rtvev")
+emission_shape = 2
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.1
+radial_accel_max = 0.1
+color_ramp = SubResource("Gradient_0kesd")
