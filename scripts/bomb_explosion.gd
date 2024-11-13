@@ -20,6 +20,7 @@ func _ready():
 	$blast.global_rotation = Vector3(0,0,0)
 	
 	$smoke.emitting = true
+	$rays.emitting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

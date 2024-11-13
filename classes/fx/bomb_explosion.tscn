@@ -58,9 +58,10 @@ point_count = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_082g5"]
 render_priority = 0
 shader = ExtResource("5_yrocg")
+shader_parameter/color = Vector3(0.5, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
-size = Vector2(0.1, 1)
+size = Vector2(0.1, 2)
 
 [sub_resource type="Gradient" id="Gradient_0kesd"]
 
@@ -107,7 +108,7 @@ emitting = false
 amount = 32
 lifetime = 0.25
 one_shot = true
-explosiveness = 0.95
+explosiveness = 0.9
 mesh = SubResource("QuadMesh_rtvev")
 emission_shape = 2
 emission_sphere_radius = 2.0
