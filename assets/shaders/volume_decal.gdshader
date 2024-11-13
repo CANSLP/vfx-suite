@@ -9,6 +9,8 @@ vec3 transform(mat4 m,vec3 v){
 
 void fragment() {
 	float s_z = texture(depth_tex,SCREEN_UV).x;
+	//s_z *= s_z;
+	//s_z = sqrt(s_z);
 	
 	vec3 f_camvec = transform(INV_VIEW_MATRIX,VERTEX);
 	vec3 f_pos = CAMERA_POSITION_WORLD+f_camvec;
@@ -21,17 +23,22 @@ void fragment() {
 		discard;
 	}
 	if(s_z>front_z){
-		discard;
+		//discard;
 	}
 
 	vec3 screen_pos = vec3(SCREEN_UV,s_z);
 	//ALBEDO = clamp(o_pos*0.1,0.0,1.0);
-	ALBEDO = vec3(1.0)*s_z;
-	//ALBEDO = vec3(1.0)*back_z;
-	if(SCREEN_UV.y>0.5){
-		ALBEDO = vec3(1.0)*front_z;
+	//ALBEDO = vec3(5,0,0)*s_z;
+	
+	//if(SCREEN_UV.y>0.5){
+	if(s_z<front_z){
+		//ALBEDO = vec3(0,0,5)*front_z;
 		//ALBEDO = vec3(1.0)*center;
+		//ALBEDO = vec3(1.0)*back_z;
 	}
+	//ALBEDO = clamp(o_pos*0.1,0.0,1.0);
+	//ALBEDO = vec3(1)*s_z;
+	ALBEDO = transform(PROJECTION_MATRIX,screen_pos);
 }
 
 //void light() {
