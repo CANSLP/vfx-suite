@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dnr4ulqqw2wqf"]
+
+[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_seam.gdshader" id="1_wv5ri"]
+[ext_resource type="Texture2D" uid="uid://olfw37ws2lpx" path="res://assets/textures/fx_seam_mask.png" id="2_pmos7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wv5ri")
+shader_parameter/color = Vector3(0.15, 1, 1)
+shader_parameter/power = 0.0
+shader_parameter/brightness = 0.0
+shader_parameter/mask = ExtResource("2_pmos7")
