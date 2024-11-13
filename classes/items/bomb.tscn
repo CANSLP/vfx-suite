@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/bomb.gd" id="1_bhpnu"]
 [ext_resource type="PackedScene" uid="uid://cdpsuo4ubwrb4" path="res://assets/models/bomb.glb" id="1_heia3"]
-[ext_resource type="Material" uid="uid://dnr4ulqqw2wqf" path="res://assets/materials/fx/fx_bomb_seam.tres" id="2_bytvm"]
+[ext_resource type="Material" uid="uid://dnr4ulqqw2wqf" path="res://assets/materials/fx/bomb/fx_bomb_seam.tres" id="2_bytvm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tnb4j"]
 bounce = 0.25

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8c6y4ptlebik"]
+
+[ext_resource type="Shader" path="res://assets/shaders/bomb_rays.gdshader" id="1_uyrr3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uyrr3")
+shader_parameter/color = Vector3(0.5, 1, 1)

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c6auhvb5tyeip"]
+
+[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="1_bmg4c"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bmg4c")
+shader_parameter/scale = 0.5
+shader_parameter/color = Vector3(0.5, 1, 1)

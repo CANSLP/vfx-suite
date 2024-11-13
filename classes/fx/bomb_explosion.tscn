@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=4 uid="uid://8emqxmwg8tar"]
+[gd_scene load_steps=15 format=4 uid="uid://8emqxmwg8tar"]
 
 [ext_resource type="Script" path="res://scripts/bomb_explosion.gd" id="1_ul0d4"]
-[ext_resource type="Material" uid="uid://bcskofc8fdqkc" path="res://assets/materials/fx/fx_explosion_rims.tres" id="2_4u4gc"]
-[ext_resource type="Material" uid="uid://cxyxmn0oxsilx" path="res://assets/materials/fx/fx_bomb_blast.tres" id="3_b538k"]
-[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="4_k7glb"]
-[ext_resource type="Shader" path="res://assets/shaders/bomb_rays.gdshader" id="5_yrocg"]
+[ext_resource type="Material" uid="uid://bcskofc8fdqkc" path="res://assets/materials/fx/bomb/fx_bomb_rims.tres" id="2_4u4gc"]
+[ext_resource type="Material" uid="uid://cxyxmn0oxsilx" path="res://assets/materials/fx/bomb/fx_bomb_blast.tres" id="3_b538k"]
+[ext_resource type="Material" uid="uid://c6auhvb5tyeip" path="res://assets/materials/fx/bomb/fx_bomb_smoke.tres" id="4_3kgjq"]
+[ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_nhsxi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ey28t"]
 
@@ -40,12 +40,6 @@ shadow_mesh = SubResource("ArrayMesh_0h3oe")
 
 [sub_resource type="SphereMesh" id="SphereMesh_ba8e2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwf5o"]
-render_priority = 0
-shader = ExtResource("4_k7glb")
-shader_parameter/scale = 0.5
-shader_parameter/color = Vector3(0.5, 1, 1)
-
 [sub_resource type="QuadMesh" id="QuadMesh_jesv4"]
 
 [sub_resource type="Curve" id="Curve_sttem"]
@@ -54,11 +48,6 @@ _data = [Vector2(0, 25), 0.0, -116.14, 0, 0, Vector2(1, 0), 17.4647, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_t75t1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_082g5"]
-render_priority = 0
-shader = ExtResource("5_yrocg")
-shader_parameter/color = Vector3(0.5, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
 size = Vector2(0.1, 2)
@@ -84,7 +73,7 @@ material_override = ExtResource("3_b538k")
 mesh = SubResource("SphereMesh_ba8e2")
 
 [node name="smoke" type="CPUParticles3D" parent="."]
-material_override = SubResource("ShaderMaterial_jwf5o")
+material_override = ExtResource("4_3kgjq")
 emitting = false
 amount = 32
 lifetime = 2.0
@@ -103,7 +92,7 @@ scale_amount_max = 0.1
 color_ramp = SubResource("Gradient_t75t1")
 
 [node name="rays" type="CPUParticles3D" parent="."]
-material_override = SubResource("ShaderMaterial_082g5")
+material_override = ExtResource("5_nhsxi")
 emitting = false
 amount = 32
 lifetime = 0.25
