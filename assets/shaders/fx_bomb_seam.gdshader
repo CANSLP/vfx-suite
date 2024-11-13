@@ -29,16 +29,10 @@ float noise(vec3 p){
 
     return o4.y * d.y + o4.x * (1.0 - d.y);
 }
-vec3 transform(vec3 i,mat4 m){
-	vec4 o = m * vec4(i.x,i.y,i.z,0);
-	return vec3(o.x,o.y,o.z);
-}
 void fragment() {
 	vec2 ruv = UV-vec2(0.5,0.5);
 	float d = sqrt(ruv.x*ruv.x+ruv.y*ruv.y);
 	float a = atan(ruv.y/ruv.x);
-	//float m = texture(mask,UV).x;
-	//m += 0.25*noise(10.0*vec3(UV.x,UV.y,TIME*0.25));
 	d += 2.0;
 	float m = noise(10.0*vec3(d*cos(a+TIME),-d*sin(a+TIME),0.0));
 	m *= noise(10.0*vec3(d*cos(a-TIME),-d*sin(a-TIME),0.5));
