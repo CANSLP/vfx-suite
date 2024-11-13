@@ -12,15 +12,26 @@ void fragment() {
 	
 	vec3 f_camvec = transform(INV_VIEW_MATRIX,VERTEX);
 	vec3 f_pos = CAMERA_POSITION_WORLD+f_camvec;
-	
+	vec3 o_pos = f_pos-NODE_POSITION_WORLD;
+	float back_z = -PROJECTION_MATRIX[3][2] / (VERTEX.z+PROJECTION_MATRIX[2][2]);
+	float center = -PROJECTION_MATRIX[3][2] / (NODE_POSITION_VIEW.z+PROJECTION_MATRIX[2][2]);
+	float front_z = center-(back_z-center);
+	//float f_z = clamp(transform(VIEW_MATRIX,f_pos),0.0,1.0).z;
 	if(s_z<FRAGCOORD.z){
 		discard;
 	}
-	if(s_z > FRAGCOORD.z){
-		//discard;
+	if(s_z>front_z){
+		discard;
 	}
+
 	vec3 screen_pos = vec3(SCREEN_UV,s_z);
-	ALBEDO = screen_pos;
+	//ALBEDO = clamp(o_pos*0.1,0.0,1.0);
+	ALBEDO = vec3(1.0)*s_z;
+	//ALBEDO = vec3(1.0)*back_z;
+	if(SCREEN_UV.y>0.5){
+		ALBEDO = vec3(1.0)*front_z;
+		//ALBEDO = vec3(1.0)*center;
+	}
 }
 
 //void light() {
