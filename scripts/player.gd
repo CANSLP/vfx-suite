@@ -1,4 +1,4 @@
-extends RigidBody3D
+class_name Player extends RigidBody3D
 
 @export var front_angle = 0
 @export var cam_angle = 0
@@ -38,6 +38,7 @@ var last_pos
 func _ready():
 	get_window().title = "" #set the window title (this should be put somewhere else lol)
 	last_pos = position
+	$camera/hand.player = self
 
 
 func _integrate_forces(state):
@@ -157,6 +158,17 @@ func get_target():
 		target = collision.collider.get_parent()
 		if(target.has_method("_target")):
 			target._target(self)
+
+func get_shoot_target(range : float):
+	var space = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create($camera.global_position,
+			$camera.global_position - $camera.global_transform.basis.z * range)
+	query.collide_with_areas = false
+	var collision = space.intersect_ray(query)
+	if collision:
+		return [collision.position,true]
+	else:
+		return [$camera.global_position - $camera.global_transform.basis.z * range,false]
 
 #click on target
 func interact():

@@ -5,7 +5,8 @@ uniform vec3 color;
 
 void vertex() {
 	float t = COLOR.x;
-	float curve = 1.0-pow(2.0*pow(1.0-(t/2.0),10.0)-1.0,2.0);
+	//float curve = 1.0-pow(2.0*pow(1.0-(t/2.0),10.0)-1.0,2.0);
+	float curve = pow(t,0.125)-t;
 	float size = scale*curve;
 	mat4 modified_model_view = VIEW_MATRIX * mat4(
         INV_VIEW_MATRIX[0]*size,
@@ -24,5 +25,8 @@ void fragment() {
 	if(d>0.5){
 		discard;
 	}
-	ALBEDO = color*(vec3(1.0)-curve*2.0)*5.0*(1.0-curve);
+	if(d<pow(t,4.0)){
+		discard;
+	}
+	ALBEDO = color*(vec3(1.0)-curve*2.0)*5.0*(1.5-curve);
 }

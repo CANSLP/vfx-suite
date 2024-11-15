@@ -87,8 +87,6 @@ initial_velocity_max = 6.0
 damping_min = 0.75
 damping_max = 1.25
 damping_curve = SubResource("Curve_sttem")
-scale_amount_min = 0.1
-scale_amount_max = 0.1
 color_ramp = SubResource("Gradient_t75t1")
 
 [node name="rays" type="CPUParticles3D" parent="."]

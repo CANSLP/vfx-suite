@@ -26,7 +26,7 @@ void fragment() {
 		//discard;
 	}
 
-	vec3 screen_pos = vec3(SCREEN_UV,s_z);
+	vec3 screen_pos = vec3(VERTEX.xy,s_z);
 	//ALBEDO = clamp(o_pos*0.1,0.0,1.0);
 	//ALBEDO = vec3(5,0,0)*s_z;
 	
@@ -38,7 +38,8 @@ void fragment() {
 	}
 	//ALBEDO = clamp(o_pos*0.1,0.0,1.0);
 	//ALBEDO = vec3(1)*s_z;
-	ALBEDO = transform(PROJECTION_MATRIX,screen_pos);
+	ALBEDO = CAMERA_POSITION_WORLD+transform(INV_VIEW_MATRIX,vec3(VERTEX.xy,s_z));
+	//ALBEDO = CAMERA_POSITION_WORLD+transform(INV_VIEW_MATRIX,VERTEX);
 }
 
 //void light() {

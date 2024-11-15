@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq5cnqdqoivsh"]
+
+[ext_resource type="PackedScene" uid="uid://c0lkqtxdotuad" path="res://assets/models/wand.glb" id="1_0khkq"]
+[ext_resource type="Script" path="res://scripts/wand.gd" id="2_6yoww"]
+[ext_resource type="PackedScene" uid="uid://d334eyafcdq3g" path="res://assets/models/fx/beam.glb" id="3_63o8m"]
+[ext_resource type="Material" uid="uid://bsu16fvs14x8h" path="res://assets/materials/glow.tres" id="4_351c3"]
+[ext_resource type="Material" uid="uid://bxtgwvli1cany" path="res://assets/materials/beam.tres" id="4_g7a5t"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x7nm2"]
+radius = 0.05
+height = 0.1
+
+[node name="wand" instance=ExtResource("1_0khkq")]
+script = ExtResource("2_6yoww")
+
+[node name="crystal" parent="." index="0"]
+cast_shadow = 0
+
+[node name="rod" parent="." index="1"]
+cast_shadow = 0
+
+[node name="hilt" parent="." index="2"]
+cast_shadow = 0
+
+[node name="ring" parent="." index="3"]
+cast_shadow = 0
+
+[node name="indicator" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -1.4)
+material_override = ExtResource("4_351c3")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_x7nm2")
+
+[node name="beam" parent="." index="5" instance=ExtResource("3_63o8m")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, -0.4)
+
+[node name="Cylinder" parent="beam" index="0"]
+material_override = ExtResource("4_g7a5t")
+cast_shadow = 0
+
+[editable path="beam"]

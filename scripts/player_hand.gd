@@ -1,10 +1,12 @@
 extends Node3D
 
+var player : Player
+
 @export var pf_bomb : PackedScene
 @onready var item_bin = get_parent().get_parent().get_parent().get_node("item bin")
 
-enum Items {SWORD,BOMB}
-@onready var hand_props = [$sword,$bomb]
+enum Items {SWORD,BOMB,WAND}
+@onready var hand_props = [$sword,$bomb,$wand]
 @export var hand_item = Items.SWORD:
 	set(item):
 		hand_item = item
@@ -33,19 +35,29 @@ func _input(event):
 				throw_bomb()
 			Items.SWORD:
 				swing_sword()
+			Items.WAND:
+				start_wand()
 	if event.is_action_released("click"):
 		match(hand_item):
 			Items.BOMB:
 				pass
 			Items.SWORD:
 				unswing_sword()
+			Items.WAND:
+				stop_wand()
 	if event.is_action_pressed("hand_scroll+"):
 		hand_item += 1
+		unswing_sword()
+		stop_wand()
 	if event.is_action_pressed("hand_scroll-"):
 		hand_item -= 1
+		unswing_sword()
+		stop_wand()
 
 func _process(delta):
 	$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
+	if $wand.shooting:
+		shoot_wand()
 
 func update_hand():
 	if hand_props != null:
@@ -56,7 +68,6 @@ func update_hand():
 			hand_item = 0
 		for i in range(len(hand_props)):
 			hand_props[i].visible = i==hand_item
-	print("update")
 
 
 func swing_sword():
@@ -69,3 +80,16 @@ func throw_bomb():
 	item_bin.add_child(bomb)
 	bomb.global_position = global_position
 	bomb.linear_velocity = global_basis*throw_vector*10
+
+func start_wand():
+	$wand.shooting = true
+
+func stop_wand():
+	$wand.shooting = false
+	$wand.hit = false
+
+func shoot_wand():
+	var target = player.get_shoot_target(100.0)
+	var shoot_target = target[0]
+	$wand.shoot_target = target[0]
+	$wand.hit = target[1]
