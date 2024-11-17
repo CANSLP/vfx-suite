@@ -8,6 +8,7 @@ var charge : float = 0.0
 var mat_seam : Material
 
 var pk_fx : PackedScene = preload("uid://8emqxmwg8tar")
+var pk_char : PackedScene = preload("uid://cxh6lrc0xbdt1")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,4 +30,7 @@ func _process(delta):
 		var fx = pk_fx.instantiate()
 		fx.global_transform = global_transform
 		get_parent().add_child(fx)
+		var char = pk_char.instantiate()
+		char.global_transform = global_transform
+		get_parent().add_child(char)
 		queue_free()
