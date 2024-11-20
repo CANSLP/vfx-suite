@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, cull_disabled;
+render_mode unshaded, cull_front;
 uniform float power = 1.0;
 uniform float beam_length = 1.0;
 uniform vec3 color : source_color = vec3(1.0);

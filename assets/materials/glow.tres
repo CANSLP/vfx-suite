@@ -1,5 +1,4 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bsu16fvs14x8h"]
 
 [resource]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
+shading_mode = 0

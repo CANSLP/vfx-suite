@@ -41,6 +41,7 @@ func _process(delta):
 			$beam.scale.x = beam_osc*0.1
 			$beam.scale.y = beam_osc*0.1
 			$impact/ball.scale = Vector3(1,1,1)*beam_osc*5.0
+			$impact/light.light_energy = beam_osc*3.0
 			mat_shell.set("shader_parameter/beam_length",beam_length)
 			if hit:
 				$impact.visible = true
@@ -54,7 +55,7 @@ func _process(delta):
 		$impact.visible = false
 		$beam.visible = false
 	mat_shell.set("shader_parameter/power",power)
-	$impact/light.light_energy = power*5.0
+	
 	
 	ani_time += delta*(1.0+up*5.0)
 	$crystal.rotation.z = ani_time
