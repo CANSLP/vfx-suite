@@ -28,7 +28,7 @@ func _process(delta):
 	time += delta
 	
 	position = lerp(Vector3(0,0,0),Vector3(0,0.1,-0.1),up)
-	
+	$impact/rays.emitting = false
 	if shooting:
 		up = lerp(up,1.0,delta*15)
 		power = lerp(power,1.0,delta*5)
@@ -44,6 +44,7 @@ func _process(delta):
 			$impact/light.light_energy = beam_osc*3.0
 			mat_shell.set("shader_parameter/beam_length",beam_length)
 			if hit:
+				$impact/rays.emitting = true
 				$impact.visible = true
 				$impact.global_position = shoot_target
 			else:
