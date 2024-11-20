@@ -1,14 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq5cnqdqoivsh"]
+[gd_scene load_steps=11 format=4 uid="uid://dq5cnqdqoivsh"]
 
 [ext_resource type="PackedScene" uid="uid://c0lkqtxdotuad" path="res://assets/models/wand.glb" id="1_0khkq"]
 [ext_resource type="Script" path="res://scripts/wand.gd" id="2_6yoww"]
 [ext_resource type="PackedScene" uid="uid://d334eyafcdq3g" path="res://assets/models/fx/beam.glb" id="3_63o8m"]
 [ext_resource type="Material" uid="uid://bsu16fvs14x8h" path="res://assets/materials/glow.tres" id="4_351c3"]
-[ext_resource type="Material" uid="uid://bxtgwvli1cany" path="res://assets/materials/beam.tres" id="4_g7a5t"]
+[ext_resource type="Shader" path="res://assets/shaders/fx_beam_shell.gdshader" id="6_v4ff7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_x7nm2"]
 radius = 0.05
 height = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njmyp"]
+render_priority = 0
+shader = ExtResource("6_v4ff7")
+shader_parameter/power = 1.0
+shader_parameter/beam_length = 1.0
+shader_parameter/color = Color(0, 1, 1, 1)
+shader_parameter/brightness = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2r2h"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1c4ka"]
+_surfaces = [{
+"aabb": AABB(-0.1, -0.1, -1, 0.2, 0.2, 1),
+"format": 34896613377,
+"index_count": 96,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUABAAHAAUABAAGAAcABgAJAAcABgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8ADgARAA8ADgAQABEAEAATABEAEAASABMAEgAVABMAEgAUABUAFAAXABUAFAAWABcAFgAZABcAFgAYABkAGAAbABkAGAAaABsAGgAdABsAGgAcAB0AHAAfAB0AHAAeAB8AHgABAB8AHgAAAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("/38AAP//AAD/fwAAAAAAAPuwvgn//wAA+7C+CQAAAACB2n0l//8AAIHafSUAAAAAQPYDT///AABA9gNPAAAAAP///3///wAA////fwAAAABA9vuw//8AAED2+7AAAAAAgdqB2v//AACB2oHaAAAAAPuwQPb//wAA+7BA9gAAAAD/f/7///8AAP9///8AAAAAA09A9v//AAADT0D2AAAAAH0lgdr//wAAfSWB2gAAAAC+Cfuw//8AAL4J+7AAAAAAAAD/f///AAAAAP9/AAAAAL4JA0///wAAvgkDTwAAAAB9JX0l//8AAH0lfSUAAAAAA0++Cf//AAADT74JAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6wb8u"]
+resource_name = "beam_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.1, -0.1, -1, 0.2, 0.2, 1),
+"attribute_data": PackedByteArray("AAD/f////38AAAAA//8AAP/v/3//7wAA/9//f//fAAD/z/9//88AAP+//3//vwAA/6//f/+vAAD/n/9//58AAP+P/3//jwAA/3//f/9/AAD/b/9//28AAP9f/3//XwAA/0//f/9PAAD/P/9//z8AAP8v/3//LwAA/x//f/8fAAD/D/9//w8AAA=="),
+"format": 34896613399,
+"index_count": 96,
+"index_data": PackedByteArray("AQAFAAMAAQAEAAUABAAHAAUABAAGAAcABgAJAAcABgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8ADgARAA8ADgAQABEAEAATABEAEAASABMAEgAVABMAEgAUABUAFAAXABUAFAAWABcAFgAZABcAFgAYABkAGAAbABkAGAAaABsAGgAdABsAGgAcAB0AHAAfAB0AHAAeAB8AHgAhAB8AHgAgACEAIAACACEAIAAAAAIA"),
+"material": SubResource("StandardMaterial3D_t2r2h"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 34,
+"vertex_data": PackedByteArray("/38AAP//////fwAA//////9/AAAAAP///38AAAAA///7sL4J//+49PuwvgkAALj0gdp9Jf//qumB2n0lAACq6UD2A0///xnfQPYDTwAAGd////9///9U1f///38AAFTVQPb7sP//yMxA9vuwAADIzIHagdr///zFgdqB2gAA/MX7sED2//+MwfuwQPYAAIzB/3/+/////7//f///AAD/vwNPQPb//4zBA09A9gAAjMF9JYHa///8xX0lgdoAAPzFvgn7sP//yMy+CfuwAADIzAAA/3///1TVAAD/fwAAVNW+CQNP//8Z374JA08AABnffSV9Jf//qul9JX0lAACq6QNPvgn//7j0A0++CQAAuPT/f/8//3//P/9//z//f/8/k4vJRZOLyUX1lfpK9ZX6Sg2gBlANoAZQqqpUVaqqVFXItmRbyLZkWwDGAGMAxgBjkdvIbZHbyG3///9/////f8jtbaTI7W2k/+L9uf/i/blj2zXJY9s1yVTVVNVU1VTVBtDx3wbQ8d/6ygjq+soI6snFavTJxWr0")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1c4ka")
 
 [node name="wand" instance=ExtResource("1_0khkq")]
 script = ExtResource("2_6yoww")
@@ -25,8 +65,16 @@ cast_shadow = 0
 [node name="ring" parent="." index="3"]
 cast_shadow = 0
 
-[node name="indicator" type="MeshInstance3D" parent="." index="4"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -1.4)
+[node name="impact" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
+
+[node name="light" type="OmniLight3D" parent="impact" index="0"]
+light_energy = 5.0
+light_size = 0.125
+shadow_enabled = true
+
+[node name="ball" type="MeshInstance3D" parent="impact" index="1"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 material_override = ExtResource("4_351c3")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_x7nm2")
@@ -35,7 +83,14 @@ mesh = SubResource("SphereMesh_x7nm2")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, -0.4)
 
 [node name="Cylinder" parent="beam" index="0"]
-material_override = ExtResource("4_g7a5t")
+material_override = ExtResource("4_351c3")
 cast_shadow = 0
+
+[node name="shell" type="MeshInstance3D" parent="beam" index="1"]
+transform = Transform3D(-5, 0, -8.74228e-08, 0, 5, 0, 4.37114e-07, 0, -1, 0, 0, -1)
+material_override = SubResource("ShaderMaterial_njmyp")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_6wb8u")
+skeleton = NodePath("")
 
 [editable path="beam"]

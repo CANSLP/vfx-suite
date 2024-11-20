@@ -53,6 +53,18 @@ func _input(event):
 		hand_item -= 1
 		unswing_sword()
 		stop_wand()
+	if event.is_action_pressed("hand_1"):
+		hand_item = 0
+		unswing_sword()
+		stop_wand()
+	if event.is_action_pressed("hand_2"):
+		hand_item = 1
+		unswing_sword()
+		stop_wand()
+	if event.is_action_pressed("hand_3"):
+		hand_item = 2
+		unswing_sword()
+		stop_wand()
 
 func _process(delta):
 	$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)

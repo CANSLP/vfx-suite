@@ -59,8 +59,12 @@ void fragment() {
 	
 	float _d = length(opos);
 	float _n = noise(((0.1*wpos)+15.0*(opos/_d)));
-	//ALBEDO = vec3(0);
-	ALBEDO = texture(scene_color,SCREEN_UV).xyz*clamp(pow(_d*0.5,2.0),0,1);
+	vec4 c = texture(scene_color,SCREEN_UV);
+	float sat = 1.5;
+	if(c.r > sat || c.g > sat || c.g > sat){
+		discard;
+	}
+	ALBEDO = c.xyz*clamp(pow(_d*0.5,2.0),0,1);
 	if(_d>2.0*power-_n){
 		discard;
 	}
