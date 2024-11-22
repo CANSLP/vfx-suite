@@ -11,6 +11,7 @@ var hit : bool
 var shoot_target : Vector3
 
 var mat_shell : Material
+var mat_corona : Material
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,14 +22,14 @@ func _ready():
 	shooting = false
 	
 	mat_shell = $beam/shell.material_override
+	mat_corona = $corona.material_override
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	
 	position = lerp(Vector3(0,0,0),Vector3(0,0.1,-0.1),up)
-	$impact/rays.emitting = false
+	
 	if shooting:
 		up = lerp(up,1.0,delta*15)
 		power = lerp(power,1.0,delta*5)
@@ -42,24 +43,30 @@ func _process(delta):
 			$beam.scale.y = beam_osc*0.1
 			$impact/ball.scale = Vector3(1,1,1)*beam_osc*5.0
 			$impact/light.light_energy = beam_osc*3.0
+			
 			mat_shell.set("shader_parameter/beam_length",beam_length)
 			if hit:
 				$impact/rays.emitting = true
-				$impact.visible = true
-				$impact.global_position = shoot_target
 			else:
-				$impact.visible = false
+				$impact/rays.emitting = false
 	else:
 		up = lerp(up,0.0,delta*15)
 		power = lerp(power,0.0,delta*5)
 		rotation_degrees = lerp(rotation_degrees,Vector3(90,0,0),delta*15)
-		$impact.visible = false
 		$beam.visible = false
+		$impact/rays.emitting = false
+		var beam_osc = (1.0+(sin(time*5.0)+1)*0.5)*up
+		$impact/ball.scale = Vector3(1,1,1)*beam_osc*5.0
+		$impact/light.light_energy = beam_osc*3.0
 	mat_shell.set("shader_parameter/power",power)
 	
+	mat_corona.set("shader_parameter/power",power)
 	
 	ani_time += delta*(1.0+up*5.0)
 	$crystal.rotation.z = ani_time
 	$crystal.position.z = sin(time*5.0)*0.005
 	$hilt.rotation.z = -ani_time
 	$ring.rotation.z = -ani_time
+	
+	if shoot_target != null:
+		$impact.global_position = shoot_target

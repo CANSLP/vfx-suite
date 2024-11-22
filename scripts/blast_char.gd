@@ -13,8 +13,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	if time < 0.25:
-		material.set("shader_parameter/power",time*4.0)
+	if time < 0.15:
+		material.set("shader_parameter/power",time/0.15)
 	elif time < 5.0:
 		material.set("shader_parameter/power",1.0)
 	elif time < 8.0:

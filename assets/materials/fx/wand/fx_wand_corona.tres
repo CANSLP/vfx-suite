@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpsw7bksj8ihb"]
+
+[ext_resource type="Shader" path="res://assets/shaders/fx_wand_corona.gdshader" id="1_t8tdf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_t8tdf")
+shader_parameter/color = Vector3(0.5, 1, 1)
+shader_parameter/power = 1.0

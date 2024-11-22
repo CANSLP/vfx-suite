@@ -79,7 +79,7 @@ func update_hand():
 		if hand_item > len(hand_props)-1:
 			hand_item = 0
 		for i in range(len(hand_props)):
-			hand_props[i].visible = i==hand_item
+			hand_props[i].visible = (i==hand_item)
 
 
 func swing_sword():

@@ -64,12 +64,14 @@ light_energy = 5.0
 [node name="rims" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 material_override = ExtResource("2_4u4gc")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_e8crt")
 skeleton = NodePath("")
 
 [node name="blast" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 material_override = ExtResource("3_b538k")
+cast_shadow = 0
 mesh = SubResource("SphereMesh_ba8e2")
 
 [node name="smoke" type="CPUParticles3D" parent="."]
@@ -91,6 +93,7 @@ color_ramp = SubResource("Gradient_t75t1")
 
 [node name="rays" type="CPUParticles3D" parent="."]
 material_override = ExtResource("5_nhsxi")
+cast_shadow = 0
 emitting = false
 amount = 32
 lifetime = 0.25

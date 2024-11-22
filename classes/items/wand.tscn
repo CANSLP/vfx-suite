@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dq5cnqdqoivsh"]
+[gd_scene load_steps=16 format=4 uid="uid://dq5cnqdqoivsh"]
 
 [ext_resource type="PackedScene" uid="uid://c0lkqtxdotuad" path="res://assets/models/wand.glb" id="1_0khkq"]
 [ext_resource type="Script" path="res://scripts/wand.gd" id="2_6yoww"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://b5hrr62f7rvjh" path="res://assets/materials/halo.tres" id="4_sqwg3"]
 [ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_gmby2"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_beam_shell.gdshader" id="6_v4ff7"]
+[ext_resource type="Material" uid="uid://cpsw7bksj8ihb" path="res://assets/materials/fx/wand/fx_wand_corona.tres" id="8_sqloo"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_x7nm2"]
 radius = 0.05
@@ -104,12 +105,13 @@ skeleton = NodePath("../..")
 
 [node name="rays" type="CPUParticles3D" parent="impact" index="2"]
 material_override = ExtResource("5_gmby2")
-amount = 32
+cast_shadow = 0
+amount = 16
 lifetime = 0.25
-local_coords = true
+speed_scale = 2.0
 mesh = SubResource("QuadMesh_8bf1f")
 emission_shape = 2
-emission_sphere_radius = 1.5
+emission_sphere_radius = 3.0
 particle_flag_align_y = true
 spread = 0.0
 gravity = Vector3(0, 0, 0)
@@ -130,5 +132,10 @@ material_override = SubResource("ShaderMaterial_njmyp")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_6wb8u")
 skeleton = NodePath("")
+
+[node name="corona" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("8_sqloo")
+cast_shadow = 0
 
 [editable path="beam"]

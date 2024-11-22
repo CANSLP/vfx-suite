@@ -39,14 +39,14 @@ void fragment() {
 	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
 	vec4 upos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth, 1.0);
 	vec3 pixel_position = upos.xyz / upos.w;
-	
+
 	vec3 wpos = CAMERA_POSITION_WORLD+transform(INV_VIEW_MATRIX,pixel_position);
 	vec3 opos = wpos-NODE_POSITION_WORLD;
 
 	float back = VERTEX.z;
 	float middle = NODE_POSITION_VIEW.z;
 	float front = 2.0*middle-back;
-	
+
 	if (pixel_position.z < back) { //cull pixels further than back
     	discard;
 	}
@@ -56,9 +56,9 @@ void fragment() {
 	if(length(opos)>radius){
 		discard;
 	}
-	
+
 	opos /= power;
-	
+
 	float _d = length(opos);
 	float _n = noise(10.0*(opos/_d));
 	vec4 c = texture(scene_color,SCREEN_UV);
@@ -70,9 +70,9 @@ void fragment() {
 	if(_d>2.0-_n){
 		discard;
 	}
-	
+
 	//ALBEDO = pixel_position;
-	
+
 }
 
 //void light() {

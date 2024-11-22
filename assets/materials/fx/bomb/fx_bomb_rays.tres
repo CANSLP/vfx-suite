@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_uyrr3")
-shader_parameter/color = Vector3(0.5, 1, 1)
+shader_parameter/color = Vector3(0.25, 1, 1)

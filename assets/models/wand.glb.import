@@ -33,6 +33,10 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
+"@MATERIAL:4": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/fx/wand/fx_wand_corona.tres"
+},
 "Material.001": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/glow.tres"
