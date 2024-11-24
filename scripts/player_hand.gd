@@ -18,9 +18,15 @@ var update_watch
 
 var throw_vector = Vector3(1,1,0)
 
+var sword_side = 1
+
 var sword_up_rot = Vector3(90,-90,90)
 var sword_down_rot = Vector3(0,0,0)
 var sword_rot : Vector3
+
+var walk_bob : float = 0.0
+
+var time = 0
 
 func _ready():
 	update_hand()
@@ -67,6 +73,9 @@ func _input(event):
 		stop_wand()
 
 func _process(delta):
+	time += delta
+	rotation_degrees.z = sin(time*15.0)*walk_bob*2.5-20
+	position.y = sin(time*15.0)*walk_bob*0.025-0.3
 	$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
 	if $wand.shooting:
 		shoot_wand()

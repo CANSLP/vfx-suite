@@ -34,6 +34,9 @@ var target = null
 var pos_save
 var last_pos
 
+var walk_bob = 0.0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_window().title = "" #set the window title (this should be put somewhere else lol)
@@ -63,6 +66,9 @@ func _integrate_forces(state):
 			var walk_angle = atan2(walk_vector.y,walk_vector.x)
 			state.linear_velocity += Vector3(-cos(front_angle+walk_angle)*walk_speed*(1-crouch*0.5),0,sin(front_angle+walk_angle)*walk_speed*(1-crouch*0.5))
 			stick = false
+			walk_bob += (1.0-walk_bob)*0.1
+		else:
+			walk_bob += (0.0-walk_bob)*0.2
 		
 		#add jump force
 		if(kJUMP):
@@ -122,6 +128,7 @@ func _process(delta):
 	var c = crouch
 	if(kCROUCH):
 		crouch += (1-crouch)*delta*10
+		walk_bob += (0-walk_bob)*delta*15
 	else:
 		crouch += (0-crouch)*delta*10
 	if crouch < c:
@@ -139,6 +146,9 @@ func _process(delta):
 		$camera.position.y = 0.5-crouch
 		$collider.shape.set_height(2-crouch)
 		$collider.position.y = crouch*-0.5
+	
+	#walk bob
+	$camera/hand.walk_bob = walk_bob
 	
 	#get the mouse target
 	get_target()

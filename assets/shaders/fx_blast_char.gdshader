@@ -66,13 +66,11 @@ void fragment() {
 	if(c.r > sat || c.g > sat || c.g > sat){
 		discard;
 	}
-	ALBEDO = c.xyz*clamp(pow(_d*0.5,2.0),0,1);
+	ALBEDO = c.xyz*clamp(pow(0.5,2.0),0,1);
+	//ALBEDO = c.xyz*clamp(pow(_d*0.5,2.0),0,1);
 	if(_d>2.0-_n){
 		discard;
 	}
-
-	//ALBEDO = pixel_position;
-
 }
 
 //void light() {
