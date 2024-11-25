@@ -28,6 +28,8 @@ var walk_bob : float = 0.0
 
 var time = 0
 
+var down = 0.0
+
 func _ready():
 	update_hand()
 	update_watch = true
@@ -35,7 +37,7 @@ func _ready():
 	$sword.rotation_degrees = sword_rot
 
 func _input(event):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and player.has_focus:
 		match(hand_item):
 			Items.BOMB:
 				throw_bomb()
@@ -53,29 +55,28 @@ func _input(event):
 				stop_wand()
 	if event.is_action_pressed("hand_scroll+"):
 		hand_item += 1
-		unswing_sword()
-		stop_wand()
+		stop_actions()
 	if event.is_action_pressed("hand_scroll-"):
 		hand_item -= 1
-		unswing_sword()
-		stop_wand()
+		stop_actions()
 	if event.is_action_pressed("hand_1"):
 		hand_item = 0
-		unswing_sword()
-		stop_wand()
+		stop_actions()
 	if event.is_action_pressed("hand_2"):
 		hand_item = 1
-		unswing_sword()
-		stop_wand()
+		stop_actions()
 	if event.is_action_pressed("hand_3"):
 		hand_item = 2
-		unswing_sword()
-		stop_wand()
+		stop_actions()
+
+func stop_actions():
+	unswing_sword()
+	stop_wand()
 
 func _process(delta):
 	time += delta
 	rotation_degrees.z = sin(time*15.0)*walk_bob*2.5-20
-	position.y = sin(time*15.0)*walk_bob*0.025-0.3
+	position.y = sin(time*15.0)*walk_bob*0.025-0.3-down
 	$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
 	if $wand.shooting:
 		shoot_wand()

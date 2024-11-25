@@ -66,16 +66,20 @@ func _integrate_forces(state):
 			var walk_angle = atan2(walk_vector.y,walk_vector.x)
 			state.linear_velocity += Vector3(-cos(front_angle+walk_angle)*walk_speed*(1-crouch*0.5),0,sin(front_angle+walk_angle)*walk_speed*(1-crouch*0.5))
 			stick = false
-			walk_bob += (1.0-walk_bob)*0.1
+			if on_ground:
+				walk_bob += (1.0-walk_bob)*0.1
 		else:
 			walk_bob += (0.0-walk_bob)*0.2
 		
-		#add jump force
-		if(kJUMP):
-			if(on_ground&&crouch<0.5):
-				stick = false
-				state.linear_velocity.y = jump_power
-				$sfx_jump.play()
+		if(on_ground):
+			#add jump force
+			if(kJUMP):
+				if(crouch<0.5):
+					stick = false
+					state.linear_velocity.y = jump_power
+					$sfx_jump.play()
+		else:
+			walk_bob += (0.0-walk_bob)*0.2
 	
 	state.linear_velocity += Vector3(0,-gravity,0) #gravity
 	
@@ -149,6 +153,10 @@ func _process(delta):
 	
 	#walk bob
 	$camera/hand.walk_bob = walk_bob
+	if has_focus:
+		$camera/hand.down += (0.0-$camera/hand.down)*delta*15.0
+	else:
+		$camera/hand.down += (1.0-$camera/hand.down)*delta*15.0
 	
 	#get the mouse target
 	get_target()
@@ -216,6 +224,7 @@ func _input(event):
 		#get_tree().quit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		has_focus = false
+		$camera/hand.stop_actions()
 	if event.is_action_pressed("forward"):
 		kFORWARD = true
 	if event.is_action_released("forward"):
