@@ -19,9 +19,11 @@ var update_watch
 var throw_vector = Vector3(1,1,0)
 
 var sword_side = 1
+var sword_swinging = false
+var sword_swing_time = 0.0
 
-var sword_up_rot = Vector3(90,-90,90)
-var sword_down_rot = Vector3(0,0,0)
+var sword_up_rot = Vector3(120,-60,145)
+var sword_down_rot = Vector3(0,-60,75)
 var sword_rot : Vector3
 
 var walk_bob : float = 0.0
@@ -77,9 +79,20 @@ func _process(delta):
 	time += delta
 	rotation_degrees.z = sin(time*15.0)*walk_bob*2.5-20
 	position.y = sin(time*15.0)*walk_bob*0.025-0.3-down
-	$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
+	#$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
 	if $wand.shooting:
 		shoot_wand()
+	if sword_swinging:
+		sword_swing_time += delta*10.0
+		if sword_swing_time > 1.0:
+			sword_swing_time = 1.0
+			sword_swinging = false
+			sword_side = -sword_side
+		var x = clamp(sword_swing_time,0,1)
+		$sword.rotation_degrees = lerp(sword_up_rot,sword_down_rot,clamp(lerp(x*x*x*(x*(x*6.0-15.0)+10.0),sqrt(x),0.25),0,1))
+	else:
+		$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_up_rot,delta*30)
+		
 
 func update_hand():
 	if hand_props != null:
@@ -93,9 +106,14 @@ func update_hand():
 
 
 func swing_sword():
-	sword_rot = sword_down_rot
+	#sword_rot = sword_down_rot
+	#sword_side = -sword_side
+	sword_swinging = true
+	sword_swing_time = 0.0
+
 func unswing_sword():
-	sword_rot = sword_up_rot
+	#sword_rot = sword_up_rot
+	pass
 
 func throw_bomb():
 	var bomb = pf_bomb.instantiate()
