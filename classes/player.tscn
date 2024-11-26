@@ -39,13 +39,12 @@ current = true
 near = 0.125
 
 [node name="hand" type="Node3D" parent="camera"]
-transform = Transform3D(8.62846e-08, -1.63238e-08, 1, -0.34202, 0.939693, 4.48504e-08, -0.939693, -0.34202, 7.54979e-08, 0.4, -0.3, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_6g0fi")
 pf_bomb = ExtResource("3_7lxoh")
 
 [node name="bomb" parent="camera/hand" instance=ExtResource("2_cmxb5")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-visible = false
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.4, -0.35, -0.55)
 
 [node name="Sphere" parent="camera/hand/bomb" index="0"]
 cast_shadow = 0
@@ -58,10 +57,11 @@ visible = false
 cast_shadow = 0
 
 [node name="sword" parent="camera/hand" instance=ExtResource("5_ntabj")]
-transform = Transform3D(-0.0419879, 0.0163788, 0.0216506, -0.0143394, 0.0204788, -0.0433013, -0.023052, -0.0425717, -0.0125, 0, 0, 0)
+transform = Transform3D(0.0085505, 0.0433012, 0.0234923, -0.0469846, -2.05376e-09, 0.017101, 0.0148099, -0.025, 0.0406899, 0.3, -0.3, -0.4)
+visible = false
 
 [node name="wand" parent="camera/hand" instance=ExtResource("6_t8igu")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.12941, -0.482963, 0, 0.482963, 0.12941, 0.3, -0.3, -0.4)
 visible = false
 
 [node name="sfx_click_in" type="AudioStreamPlayer" parent="."]

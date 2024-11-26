@@ -16,14 +16,14 @@ enum Items {SWORD,BOMB,WAND}
 
 var update_watch
 
-var throw_vector = Vector3(1,1,0)
+var throw_vector = Vector3(-0.1,0.5,-1)
 
 var sword_side = 1
 var sword_swinging = false
 var sword_swing_time = 0.0
 
-var sword_up_rot = Vector3(120,-60,145)
-var sword_down_rot = Vector3(0,-60,75)
+var sword_up_rot = Vector3(110,0,-90)
+var sword_down_rot = Vector3(-20,30,-90)
 var sword_rot : Vector3
 
 var walk_bob : float = 0.0
@@ -77,8 +77,8 @@ func stop_actions():
 
 func _process(delta):
 	time += delta
-	rotation_degrees.z = sin(time*15.0)*walk_bob*2.5-20
-	position.y = sin(time*15.0)*walk_bob*0.025-0.3-down
+	rotation_degrees.z = sin(time*15.0)*walk_bob*2.5
+	position.y = sin(time*15.0)*walk_bob*0.025-down
 	#$sword.rotation_degrees = lerp($sword.rotation_degrees,sword_rot,delta*30)
 	if $wand.shooting:
 		shoot_wand()
@@ -118,7 +118,7 @@ func unswing_sword():
 func throw_bomb():
 	var bomb = pf_bomb.instantiate()
 	item_bin.add_child(bomb)
-	bomb.global_position = global_position
+	bomb.global_position = $bomb.global_position
 	bomb.linear_velocity = global_basis*throw_vector*10
 
 func start_wand():

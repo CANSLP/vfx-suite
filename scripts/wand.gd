@@ -28,7 +28,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	position = lerp(Vector3(0,0,0),Vector3(0,0.1,-0.1),up)
+	position = lerp(Vector3(0.3,-0.3,-0.4),Vector3(0.3,-0.2,-0.5),up)
 	
 	if shooting:
 		up = lerp(up,1.0,delta*15)
@@ -52,7 +52,7 @@ func _process(delta):
 	else:
 		up = lerp(up,0.0,delta*15)
 		power = lerp(power,0.0,delta*5)
-		rotation_degrees = lerp(rotation_degrees,Vector3(90,0,0),delta*15)
+		rotation_degrees = lerp(rotation_degrees,Vector3(75,0,0),delta*15)
 		$beam.visible = false
 		$impact/rays.emitting = false
 		var beam_osc = (1.0+(sin(time*5.0)+1)*0.5)*up
