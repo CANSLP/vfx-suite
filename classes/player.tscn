@@ -39,7 +39,6 @@ current = true
 near = 0.125
 
 [node name="hand" type="Node3D" parent="camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_6g0fi")
 pf_bomb = ExtResource("3_7lxoh")
 

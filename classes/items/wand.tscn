@@ -103,6 +103,13 @@ cast_shadow = 0
 mesh = SubResource("SphereMesh_x7nm2")
 skeleton = NodePath("../..")
 
+[node name="ball_halo2" type="MeshInstance3D" parent="impact/ball" index="1"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+material_override = ExtResource("4_sqwg3")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_x7nm2")
+skeleton = NodePath("../..")
+
 [node name="rays" type="CPUParticles3D" parent="impact" index="2"]
 material_override = ExtResource("5_gmby2")
 cast_shadow = 0
@@ -127,14 +134,14 @@ material_override = ExtResource("4_351c3")
 cast_shadow = 0
 
 [node name="shell" type="MeshInstance3D" parent="beam" index="1"]
-transform = Transform3D(-2, 0, -1.50996e-07, 0, 2, 0, 3.01992e-07, 0, -1, 0, 0, -1)
+transform = Transform3D(-3, 0, -1.50996e-07, 0, 3, 0, 4.52987e-07, 0, -1, 0, 0, -1)
 material_override = SubResource("ShaderMaterial_njmyp")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_6wb8u")
 skeleton = NodePath("")
 
 [node name="corona" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, -4.37114e-08, -1.5, 0, 1, -6.55671e-08, 0, 0, 0)
 material_override = ExtResource("8_sqloo")
 cast_shadow = 0
 

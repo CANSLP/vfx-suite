@@ -30,9 +30,12 @@ float noise(vec3 p){
 void fragment() {
 	ALBEDO = color;
 	float _d = length(UV-0.5);
-	float _n = noise(vec3((UV-0.5)*25.0/(_d+0.1),TIME*2.5));
-	float _w = sin(_d*25.0+sin(TIME*25.0)-15.0);
-	if(_w+_n<2.0-power){
+	float _a = atan((UV.y-0.5)/(UV.x-0.5));
+	float _n = noise(vec3(_d*10.0-TIME*25.0,_a*15.0,0.0));
+	//float _w = sin(_d*25.0+sin(TIME*25.0)-15.0);
+	float ring = cos(_d*10.0+0.5*sin(TIME*10.0))*0.5+1.0;
+	if(_n+power<ring+1.0){
+	//if(0.5<ring){
 		discard;
 	}
 }
