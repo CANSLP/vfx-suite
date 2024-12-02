@@ -14,7 +14,9 @@ void fragment() {
 	if(m < 1.1-power){
 		discard;
 	}
-	ALBEDO = color*brightness*(m+1.0);
+	float c = (m-(1.1-power));
+	c *= c;
+	ALBEDO = (color+vec3(c))*brightness;
 }
 
 //void light() {
