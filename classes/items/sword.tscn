@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=4 uid="uid://kkxhh23j4g0l"]
+[gd_scene load_steps=24 format=4 uid="uid://kkxhh23j4g0l"]
 
 [ext_resource type="Script" path="res://scripts/sword.gd" id="1_qj7yi"]
 [ext_resource type="Material" uid="uid://bsu16fvs14x8h" path="res://assets/materials/glow.tres" id="2_mckup"]
 [ext_resource type="Material" uid="uid://dux41o1hvvtth" path="res://assets/materials/black.tres" id="3_ynn6q"]
 [ext_resource type="Material" uid="uid://dxov2sjaochxc" path="res://assets/materials/trim.tres" id="4_stvrr"]
 [ext_resource type="Material" uid="uid://dkwljxievtt2e" path="res://assets/materials/metal.tres" id="5_w3a80"]
+[ext_resource type="Material" uid="uid://dfb2ce52ki15q" path="res://assets/materials/fx/fx_sweep.tres" id="6_2tn7c"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cahey"]
 _surfaces = [{
@@ -276,8 +277,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fbhed")
 
+[sub_resource type="QuadMesh" id="QuadMesh_k77ec"]
+size = Vector2(20, 14)
+
 [node name="sword" type="Node3D"]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_qj7yi")
 
 [node name="arm" type="Node3D" parent="."]
@@ -325,3 +329,9 @@ skeleton = NodePath("")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_hharq")
 skeleton = NodePath("")
+
+[node name="sweep_plane" type="MeshInstance3D" parent="arm/model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10, 0, -7)
+material_override = ExtResource("6_2tn7c")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_k77ec")
