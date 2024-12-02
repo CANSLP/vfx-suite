@@ -28,7 +28,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	position = lerp(Vector3(0.3,-0.3,-0.4),Vector3(0.3,-0.2,-0.5),up)
+	position = lerp(Vector3(position.x,-0.3,-0.4),Vector3(position.x,-0.2,-0.5),up)
 	
 	if shooting:
 		up = lerp(up,1.0,delta*15)

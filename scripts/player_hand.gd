@@ -16,9 +16,8 @@ enum Items {SWORD,BOMB,WAND}
 
 var update_watch
 
-var throw_vector = Vector3(-0.1,0.5,-1)
-
-var sword_side = 1
+var hand_side = 1
+var throw_vector = Vector3(-0.1*hand_side,0.5,-1)
 
 var walk_bob : float = 0.0
 
@@ -73,7 +72,8 @@ func _process(delta):
 	position.y = sin(time*15.0)*walk_bob*0.025-down
 	if $wand.shooting:
 		shoot_wand()
-		
+	$bomb.position.x = lerp($bomb.position.x,0.4*hand_side,delta*30)
+	$wand.position.x = lerp($wand.position.x,0.3*hand_side,delta*30)
 
 func update_hand():
 	if hand_props != null:
@@ -87,8 +87,8 @@ func update_hand():
 
 
 func swing_sword():
-	sword_side = -sword_side
-	$sword.swipe_to(-20*sword_side,-70*sword_side,0.1,60*sword_side,0.15*sword_side)
+	hand_side = -hand_side
+	$sword.swipe_to(-20*hand_side,-70*hand_side,0.1,60*hand_side,0.15*hand_side)
 
 func unswing_sword():
 	#sword_rot = sword_up_rot

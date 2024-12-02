@@ -7,9 +7,9 @@ var target_height : float = 60
 var target_angle : float
 @export var reach_min = -0.2
 @export var reach_max = -0.35
-var return_height = 45
+var return_height = 60
 
-var target_side : float = 0.1
+var target_side : float = 0.15
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
