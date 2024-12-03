@@ -28,7 +28,7 @@ func _process(delta):
 	time += delta
 	$light.light_energy = 25*clamp(pow(2.0*(0.5-time),5.0),0,1)
 	
-	$rims.scale = Vector3(1,1,1)*clamp(pow(time*5.0,0.125),0,1)
+	$rims.scale = Vector3(1,1,1)*clamp(pow(time*5.0,0.5),0,1)
 	mat_rims.set("shader_parameter/time",clamp(pow(time*5.0,0.125),0,1));
 	mat_rims.set("shader_parameter/brightness",10.0*clamp(pow(time*5.0,0.125),0,1));
 	

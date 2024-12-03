@@ -17,7 +17,7 @@ enum Items {SWORD,BOMB,WAND}
 var update_watch
 
 var hand_side = 1
-var throw_vector = Vector3(-0.1*hand_side,0.5,-1)
+var throw_vector = Vector3(-0.1*hand_side,0,-1)
 
 var walk_bob : float = 0.0
 
@@ -98,7 +98,7 @@ func throw_bomb():
 	var bomb = pf_bomb.instantiate()
 	item_bin.add_child(bomb)
 	bomb.global_position = $bomb.global_position
-	bomb.linear_velocity = global_basis*throw_vector*10
+	bomb.linear_velocity = ((global_basis*throw_vector)+Vector3(0,0.5,0))*10
 
 func start_wand():
 	$wand.shooting = true
