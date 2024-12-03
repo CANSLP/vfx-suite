@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://df5citw0i1ll6"]
+
+[ext_resource type="PackedScene" uid="uid://ctnh2s6yikx46" path="res://assets/models/head.glb" id="1_7q38o"]
+[ext_resource type="Shader" path="res://assets/shaders/evil_crystal.gdshader" id="2_30y86"]
+[ext_resource type="Shader" path="res://assets/shaders/face.gdshader" id="3_isb5e"]
+[ext_resource type="Texture2D" uid="uid://cp0cwp710ha1c" path="res://assets/textures/fx_face_mask.png" id="4_36j15"]
+[ext_resource type="Texture2D" uid="uid://twfwcmsluu57" path="res://assets/textures/images.jpg" id="4_xxgul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cvj8"]
+render_priority = 0
+shader = ExtResource("2_30y86")
+shader_parameter/glow = 0.0
+shader_parameter/color = Vector3(0.25, 5, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrpsp"]
+render_priority = 0
+shader = ExtResource("3_isb5e")
+shader_parameter/color = Vector3(0.5, 3, 3)
+shader_parameter/mask = ExtResource("4_36j15")
+shader_parameter/distort = ExtResource("4_xxgul")
+
+[node name="head" instance=ExtResource("1_7q38o")]
+
+[node name="Icosphere" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_0cvj8")
+
+[node name="face" parent="." index="1"]
+transform = Transform3D(-3.27835e-08, -0.75, 3.27835e-08, 0, -3.27835e-08, -0.75, 0.75, -3.27835e-08, 1.43301e-15, -0.8, 0, 0)
+material_override = SubResource("ShaderMaterial_hrpsp")
+cast_shadow = 0
