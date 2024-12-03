@@ -163,7 +163,7 @@ func _process(delta):
 
 #what object is the mouse hovering over
 func get_target():
-	if target:
+	if target and is_instance_valid(target):
 		if(target.has_method("_untarget")):
 			target._untarget(self)
 	target = null

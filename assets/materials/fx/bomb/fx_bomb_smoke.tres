@@ -6,4 +6,4 @@
 render_priority = 0
 shader = ExtResource("1_bmg4c")
 shader_parameter/scale = 1.0
-shader_parameter/color = Vector3(0.25, 1, 1)
+shader_parameter/color = Vector3(0, 0, 0)

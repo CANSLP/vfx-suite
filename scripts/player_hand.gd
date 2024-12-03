@@ -114,4 +114,4 @@ func shoot_wand():
 	$wand.hit = target[1]
 	var areas = player.get_shoot_areas((target[0]-$wand.global_position).length())
 	if areas != null:
-		areas.get_parent().shoot()
+		areas.get_parent().get_parent().shoot()

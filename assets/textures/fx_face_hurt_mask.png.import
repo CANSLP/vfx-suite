@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp0cwp710ha1c"
-path="res://.godot/imported/fx_face_mask.png-05d409764880778837bde8613c340cdb.ctex"
+uid="uid://bbufvcpf0at78"
+path="res://.godot/imported/fx_face_hurt_mask.png-2cdbe483fdcd86cf58542b3bf52488ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/fx_face_mask.png"
-dest_files=["res://.godot/imported/fx_face_mask.png-05d409764880778837bde8613c340cdb.ctex"]
+source_file="res://assets/textures/fx_face_hurt_mask.png"
+dest_files=["res://.godot/imported/fx_face_hurt_mask.png-2cdbe483fdcd86cf58542b3bf52488ce.ctex"]
 
 [params]
 

@@ -21,6 +21,7 @@ void fragment() {
 	ALBEDO = vec3(0);
 	EMISSION = sc*sc*edge*0.5;
 	EMISSION += clamp((color-2.0+5.0*vec3(0.2*edge+_r+pow(glow,2.0)-1.0)),0.0,1.0)*glow;
+	EMISSION += color*pow(clamp((r-0.3)*10.0,0.0,1.0),5.0)*pow(glow,0.25);
 	//EMISSION = vec3(edge);
 	//EMISSION = vec3(_r);
 }
