@@ -188,6 +188,18 @@ func get_shoot_target(range : float):
 	else:
 		return [$camera.global_position - $camera.global_transform.basis.z * range,false]
 
+func get_shoot_areas(range : float):
+	var space = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create($camera.global_position,
+			$camera.global_position - $camera.global_transform.basis.z * range)
+	query.collide_with_areas = true
+	var collision = space.intersect_ray(query)
+	var collider = collision.get("collider")
+	if collider != null && collision.collider.collision_layer == 128:
+		return collider
+	else:
+		return null
+
 #click on target
 func interact():
 	get_target()

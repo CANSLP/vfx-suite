@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6s4l7gqnbd68"]
+[gd_scene load_steps=24 format=3 uid="uid://b6s4l7gqnbd68"]
 
 [ext_resource type="PackedScene" uid="uid://cp0q2snacikok" path="res://classes/player.tscn" id="1_2akv7"]
 [ext_resource type="PackedScene" uid="uid://dckkta0gytuqq" path="res://classes/props/architecture/ground.tscn" id="2_8keuo"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://db0rbr61h7al2" path="res://classes/props/architecture/fence.tscn" id="19_nap46"]
 [ext_resource type="PackedScene" uid="uid://ew3hx62suldr" path="res://classes/props/architecture/floor.tscn" id="20_bj00v"]
 [ext_resource type="PackedScene" uid="uid://4dgl6tbk2piw" path="res://classes/props/architecture/wall_unit.tscn" id="21_sdvdq"]
+[ext_resource type="PackedScene" uid="uid://c0qfb4liei0k6" path="res://classes/creature.tscn" id="22_peeav"]
 
 [sub_resource type="Environment" id="Environment_ky6rn"]
 background_mode = 1
@@ -420,3 +421,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99925, 0, -19.998)
 [node name="props" type="Node3D" parent="."]
 
 [node name="item bin" type="Node3D" parent="."]
+
+[node name="creature" parent="." instance=ExtResource("22_peeav")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -3.03211, 1, -3.8857)

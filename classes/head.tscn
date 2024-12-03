@@ -10,7 +10,7 @@
 render_priority = 0
 shader = ExtResource("2_30y86")
 shader_parameter/glow = 0.0
-shader_parameter/color = Vector3(0.25, 5, 5)
+shader_parameter/color = Vector3(1, 2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hrpsp"]
 render_priority = 0

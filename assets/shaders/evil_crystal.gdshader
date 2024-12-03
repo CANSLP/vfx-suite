@@ -11,15 +11,18 @@ vec3 transform(mat4 m,vec3 v){
 void fragment() {
 	vec3 v = VERTEX-NODE_POSITION_VIEW;
 	float r = length(v);
-	float edge = 1.0-pow((r-0.5)*3.5,2.0);
+	vec2 _v = v.xy;
+	float _r = 1.0-clamp(length(_v),0.0,1.0);
+	float edge = clamp(pow((r-0.4)*7.5,2.0),0.0,1.0);
 	vec3 sc;
 	sc = texture(SCREEN_TEXTURE,SCREEN_UV+(NORMAL.xy*0.05)).xyz;
 	METALLIC = 1.0;
 	ROUGHNESS = 0.0;
 	ALBEDO = vec3(0);
-	EMISSION = sc*sc*edge*0.25;
-	EMISSION += (color+vec3((edge+0.5)))*pow(glow,8.0);
-	
+	EMISSION = sc*sc*edge*0.5;
+	EMISSION += clamp((color-2.0+5.0*vec3(0.2*edge+_r+pow(glow,2.0)-1.0)),0.0,1.0)*glow;
+	//EMISSION = vec3(edge);
+	//EMISSION = vec3(_r);
 }
 
 //void light() {
