@@ -76,6 +76,9 @@ func _process(delta):
 		fx.global_transform = $head.global_transform
 		get_parent().add_child(fx)
 		queue_free()
+	
+	if global_position.y < -10:
+		queue_free()
 
 func _integrate_forces(state):
 	state.linear_velocity *= Vector3(0.99,1.0,0.99)

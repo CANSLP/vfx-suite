@@ -15,6 +15,8 @@ func _process(delta):
 		timer += delta
 		if timer > 5.0:
 			queue_free()
+	if global_position.y < -10:
+		smashed = true
 
 func _integrate_forces(state):
 	if state.get_contact_count() > 0:

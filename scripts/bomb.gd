@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name Bomb
 
-@export var fuse : float = 3.0
+@export var fuse : float = 2.0
 var max_fuse : float = 3.0
 var charge : float = 0.0
 
@@ -10,6 +10,7 @@ var mat_seam : Material
 var pk_fx : PackedScene = preload("uid://8emqxmwg8tar")
 var pk_char : PackedScene = preload("uid://cxh6lrc0xbdt1")
 
+var on_ground = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,15 @@ func _ready():
 	mat_seam = mat_seam.duplicate()
 	$mesh/seam_fx.material_override = mat_seam
 
+func _integrate_forces(state):
+	on_ground = false
+	if state.get_contact_count() > 0:
+		for contact in range(state.get_contact_count()):
+			var clayer = state.get_contact_collider_object(contact).get_collision_layer()
+			if clayer != 128:
+				on_ground = true
+	if on_ground:
+		state.linear_velocity *= Vector3(0.95,1.0,0.95)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

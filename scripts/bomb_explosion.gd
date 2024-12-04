@@ -43,4 +43,4 @@ func _process(delta):
 func _area_enter(area):
 	if area.get_parent().get_parent() is Creature:
 		var vec = (area.global_position-global_position)
-		area.get_parent().get_parent().die(vec.normalized()*5.0*(10-vec.length()))
+		area.get_parent().get_parent().die(vec.normalized()*3.0*(10-vec.length()))
