@@ -1,4 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxov2sjaochxc"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxov2sjaochxc"]
+
+[ext_resource type="Texture2D" uid="uid://cj23f8hwpjrbe" path="res://assets/textures/tile_normals.png" id="1_ggvmd"]
 
 [resource]
 albedo_color = Color(0.37224, 0.3432, 0.44, 1)
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("1_ggvmd")

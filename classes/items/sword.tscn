@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://dux41o1hvvtth" path="res://assets/materials/black.tres" id="3_ynn6q"]
 [ext_resource type="Material" uid="uid://dxov2sjaochxc" path="res://assets/materials/trim.tres" id="4_stvrr"]
 [ext_resource type="Material" uid="uid://dkwljxievtt2e" path="res://assets/materials/metal.tres" id="5_w3a80"]
-[ext_resource type="Material" uid="uid://dfb2ce52ki15q" path="res://assets/materials/fx/fx_sweep.tres" id="6_2tn7c"]
+[ext_resource type="Material" path="res://assets/materials/fx/fx_sweep.tres" id="6_2tn7c"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cahey"]
 _surfaces = [{

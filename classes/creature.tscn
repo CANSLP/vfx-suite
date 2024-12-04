@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0qfb4liei0k6"]
+[gd_scene load_steps=14 format=3 uid="uid://b6nhl76eq38as"]
 
 [ext_resource type="Script" path="res://scripts/creature.gd" id="1_0b2nl"]
-[ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_1h83e"]
+[ext_resource type="PackedScene" path="res://classes/head.tscn" id="1_1h83e"]
 [ext_resource type="Texture2D" uid="uid://cp0cwp710ha1c" path="res://assets/textures/fx_face_mask.png" id="2_h2qgf"]
 [ext_resource type="Texture2D" uid="uid://bbufvcpf0at78" path="res://assets/textures/fx_face_hurt_mask.png" id="3_vjua5"]
+[ext_resource type="PackedScene" path="res://classes/fx/crystal_burst.tscn" id="4_0tge0"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="5_d7iwf"]
+[ext_resource type="PackedScene" uid="uid://gq8avtasvfso" path="res://classes/dead_head.tscn" id="5_w1bgg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i0p1t"]
 
@@ -37,6 +39,8 @@ gravity_scale = 0.05
 script = ExtResource("1_0b2nl")
 tx_face_idle = ExtResource("2_h2qgf")
 tx_face_hurt = ExtResource("3_vjua5")
+pk_burst = ExtResource("4_0tge0")
+pk_head = ExtResource("5_w1bgg")
 
 [node name="head" parent="." instance=ExtResource("1_1h83e")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)

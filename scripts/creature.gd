@@ -14,8 +14,8 @@ var face_mat : Material
 var shot = false
 var hurt = false
 
-var pk_burst : PackedScene = preload("uid://vywh8g8m0ib7")
-var pk_head : PackedScene = preload("uid://t225v4l84x6m")
+@export var pk_burst : PackedScene
+@export var pk_head : PackedScene
 
 var player : Player
 var hunting = false

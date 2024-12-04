@@ -55,15 +55,15 @@ void fragment() {
 	//if(d>0.5){
 	//	discard;
 	//}
-	
+
 	vec3 f_camvec = transform(INV_VIEW_MATRIX,VERTEX);
 	vec3 f_pos = CAMERA_POSITION_WORLD+f_camvec;
 	float n = noise(f_pos*5.0)*0.5;
-	
+
 	if((d*4.0)+(n-1.0)+t > 0.0){
 		discard;
 	}
-	
+
 	//if(d<pow(t,4.0)){
 	//	discard;
 	//}

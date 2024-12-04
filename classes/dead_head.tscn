@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://t225v4l84x6m"]
+[gd_scene load_steps=11 format=3 uid="uid://gq8avtasvfso"]
 
 [ext_resource type="Script" path="res://scripts/dead_head.gd" id="1_pepgh"]
-[ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_w7cco"]
+[ext_resource type="PackedScene" path="res://classes/head.tscn" id="1_w7cco"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="2_j872k"]
-[ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_1623x"]
+[ext_resource type="Material" path="res://assets/materials/crystal.tres" id="4_1623x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qiuhi"]
 radius = 0.4

@@ -5,8 +5,8 @@ var player : Player
 @export var pf_bomb : PackedScene
 @onready var item_bin = get_parent().get_parent().get_parent().get_node("item bin")
 
-enum Items {SWORD,BOMB,WAND}
-@onready var hand_props = [$sword,$bomb,$wand]
+enum Items {SWORD,WAND,BOMB}
+@onready var hand_props = [$sword,$wand,$bomb]
 @export var hand_item = Items.SWORD:
 	set(item):
 		hand_item = item
@@ -101,7 +101,7 @@ func throw_bomb():
 	var bomb = pf_bomb.instantiate()
 	item_bin.add_child(bomb)
 	bomb.global_position = $bomb.global_position
-	bomb.linear_velocity = ((global_basis*throw_vector)+Vector3(0,0.5,0))*10
+	bomb.linear_velocity = player.linear_velocity+((global_basis*throw_vector)+Vector3(0,0.5,0))*7.5
 
 func start_wand():
 	$wand.shooting = true
