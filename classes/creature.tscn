@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0qfb4liei0k6"]
+[gd_scene load_steps=12 format=3 uid="uid://c0qfb4liei0k6"]
 
 [ext_resource type="Script" path="res://scripts/creature.gd" id="1_0b2nl"]
 [ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_1h83e"]
 [ext_resource type="Texture2D" uid="uid://cp0cwp710ha1c" path="res://assets/textures/fx_face_mask.png" id="2_h2qgf"]
 [ext_resource type="Texture2D" uid="uid://bbufvcpf0at78" path="res://assets/textures/fx_face_hurt_mask.png" id="3_vjua5"]
-[ext_resource type="Material" uid="uid://c6auhvb5tyeip" path="res://assets/materials/fx/bomb/fx_bomb_smoke.tres" id="5_x7xmi"]
+[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="5_d7iwf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i0p1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpt43"]
+render_priority = 0
+shader = ExtResource("5_d7iwf")
+shader_parameter/scale = 1.0
+shader_parameter/color = Vector3(0, 0, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_7rtpe"]
 
@@ -50,7 +56,7 @@ shape = SubResource("SphereShape3D_i0p1t")
 
 [node name="smoke" type="CPUParticles3D" parent="head"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-material_override = ExtResource("5_x7xmi")
+material_override = SubResource("ShaderMaterial_kpt43")
 amount = 32
 lifetime = 5.0
 mesh = SubResource("QuadMesh_7rtpe")
