@@ -89,6 +89,9 @@ func update_hand():
 func swing_sword():
 	hand_side = -hand_side
 	$sword.swipe_to(-20*hand_side,-70*hand_side,0.1,60*hand_side,hand_side)
+	var areas = player.get_shoot_areas(1.0)
+	if areas != null:
+		areas.get_parent().get_parent().die((hand_side*global_basis.x-global_basis.z)*10)
 
 func unswing_sword():
 	#sword_rot = sword_up_rot

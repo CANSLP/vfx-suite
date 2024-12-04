@@ -14,6 +14,7 @@ func _ready():
 	$blast.scale = Vector3(0,0,0)
 	$blast.global_rotation = Vector3(0,0,0)
 	$rays.emitting = true
+	$smash_fx.emitting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

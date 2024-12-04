@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://t225v4l84x6m"]
+
+[ext_resource type="Script" path="res://scripts/dead_head.gd" id="1_pepgh"]
+[ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_w7cco"]
+[ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="2_j872k"]
+[ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_1623x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qiuhi"]
+radius = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xig1"]
+render_priority = 0
+shader = ExtResource("2_j872k")
+shader_parameter/scale = 1.0
+shader_parameter/color = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jy00w"]
+
+[sub_resource type="Curve" id="Curve_ivvph"]
+max_value = 25.0
+_data = [Vector2(0, 25), 0.0, -116.14, 0, 0, Vector2(1, 0), 17.4647, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vrkdx"]
+offsets = PackedFloat32Array(0, 0.493333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.12, 0.12, 0.12, 1, 1, 1, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_yfav8"]
+
+[node name="dead_head" type="RigidBody3D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_pepgh")
+
+[node name="head" parent="." instance=ExtResource("1_w7cco")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qiuhi")
+
+[node name="smoke" type="CPUParticles3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_2xig1")
+emitting = false
+amount = 32
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.5
+mesh = SubResource("QuadMesh_jy00w")
+emission_shape = 1
+emission_sphere_radius = 0.25
+spread = 180.0
+gravity = Vector3(0, -0.5, 0)
+initial_velocity_max = 1.0
+damping_min = 0.75
+damping_max = 1.25
+damping_curve = SubResource("Curve_ivvph")
+color_ramp = SubResource("Gradient_vrkdx")
+
+[node name="smash_fx" type="CPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_1623x")
+emitting = false
+amount = 32
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("PrismMesh_yfav8")
+emission_shape = 1
+emission_sphere_radius = 0.5
+particle_flag_align_y = true
+spread = 90.0
+gravity = Vector3(0, -8, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 15.0
+scale_amount_min = 0.1
+scale_amount_max = 0.25

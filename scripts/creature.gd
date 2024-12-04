@@ -15,6 +15,7 @@ var shot = false
 var hurt = false
 
 var pk_burst : PackedScene = preload("uid://vywh8g8m0ib7")
+var pk_head : PackedScene = preload("uid://t225v4l84x6m")
 
 var player : Player
 var hunting = false
@@ -97,3 +98,12 @@ func look():
 				var target = collision.collider
 				if target is Player:
 					hunting = true
+
+func die(vel : Vector3):
+	var dead_head = pk_head.instantiate()
+	get_parent().add_child(dead_head)
+	dead_head.global_position = $head.global_position
+	dead_head.global_rotation = $head.global_rotation
+	dead_head.get_node("head/face").rotation = $head/face.rotation
+	dead_head.linear_velocity = vel
+	queue_free()

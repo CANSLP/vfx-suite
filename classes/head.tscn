@@ -1,15 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://df5citw0i1ll6"]
+[gd_scene load_steps=11 format=4 uid="uid://df5citw0i1ll6"]
 
-[ext_resource type="Shader" path="res://assets/shaders/evil_crystal.gdshader" id="2_30y86"]
+[ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="1_rmq61"]
 [ext_resource type="Shader" path="res://assets/shaders/face.gdshader" id="3_isb5e"]
-[ext_resource type="Texture2D" uid="uid://cp0cwp710ha1c" path="res://assets/textures/fx_face_mask.png" id="4_36j15"]
+[ext_resource type="Texture2D" uid="uid://bbufvcpf0at78" path="res://assets/textures/fx_face_hurt_mask.png" id="4_t32cp"]
 [ext_resource type="Texture2D" uid="uid://twfwcmsluu57" path="res://assets/textures/images.jpg" id="4_xxgul"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cvj8"]
-render_priority = 0
-shader = ExtResource("2_30y86")
-shader_parameter/glow = 0.0
-shader_parameter/color = Vector3(1, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ss15"]
 
@@ -35,7 +29,7 @@ blend_shape_mode = 0
 render_priority = 0
 shader = ExtResource("3_isb5e")
 shader_parameter/color = Vector3(0.5, 3, 3)
-shader_parameter/mask = ExtResource("4_36j15")
+shader_parameter/mask = ExtResource("4_t32cp")
 shader_parameter/distort = ExtResource("4_xxgul")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fmd3"]
@@ -73,7 +67,7 @@ shadow_mesh = SubResource("ArrayMesh_1bc38")
 [node name="head" type="Node3D"]
 
 [node name="Icosphere" type="MeshInstance3D" parent="."]
-material_override = SubResource("ShaderMaterial_0cvj8")
+material_override = ExtResource("1_rmq61")
 mesh = SubResource("ArrayMesh_u3hhv")
 skeleton = NodePath("")
 "blend_shapes/Key 1" = 0.0

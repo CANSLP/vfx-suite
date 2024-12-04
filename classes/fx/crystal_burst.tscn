@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vywh8g8m0ib7"]
+[gd_scene load_steps=10 format=3 uid="uid://vywh8g8m0ib7"]
 
 [ext_resource type="Script" path="res://scripts/crystal_burst.gd" id="1_4yaix"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_crystal_blast.gdshader" id="2_q32n3"]
+[ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_2of1j"]
 [ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_je1lf"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
@@ -16,6 +17,8 @@ shader_parameter/color = Vector3(0, 1, 1)
 shader_parameter/power = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_avch0"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_nwnvo"]
 
 [node name="CrystalBurst" type="Node3D"]
 script = ExtResource("1_4yaix")
@@ -46,3 +49,23 @@ color_ramp = SubResource("Gradient_0kesd")
 [node name="blast" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_5bdxb")
 mesh = SubResource("SphereMesh_avch0")
+
+[node name="smash_fx" type="CPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_2of1j")
+emitting = false
+amount = 16
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("PrismMesh_nwnvo")
+emission_shape = 1
+emission_sphere_radius = 0.5
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector3(0, -8, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.1
+scale_amount_max = 0.25

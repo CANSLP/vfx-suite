@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://8emqxmwg8tar"]
+[gd_scene load_steps=16 format=4 uid="uid://8emqxmwg8tar"]
 
 [ext_resource type="Script" path="res://scripts/bomb_explosion.gd" id="1_ul0d4"]
 [ext_resource type="Material" uid="uid://bcskofc8fdqkc" path="res://assets/materials/fx/bomb/fx_bomb_rims.tres" id="2_4u4gc"]
@@ -54,6 +54,9 @@ size = Vector2(0.1, 2)
 
 [sub_resource type="Gradient" id="Gradient_0kesd"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_51bdq"]
+radius = 3.0
+
 [node name="BombExplosion" type="Node3D"]
 script = ExtResource("1_ul0d4")
 
@@ -108,3 +111,11 @@ gravity = Vector3(0, 0, 0)
 radial_accel_min = 0.1
 radial_accel_max = 0.1
 color_ramp = SubResource("Gradient_0kesd")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_51bdq")
+
+[connection signal="area_entered" from="Area3D" to="." method="_area_enter"]
