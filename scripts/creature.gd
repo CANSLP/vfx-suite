@@ -14,9 +14,11 @@ var face_mat : Material
 var shot = false
 var hurt = false
 
-var pk_burst : PackedScene = preload("uid://8emqxmwg8tar")
+var pk_burst : PackedScene = preload("uid://vywh8g8m0ib7")
 
 var player : Player
+var hunting = false
+var hunt_range = 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,13 +41,17 @@ func _ready():
 func _process(delta):
 	time += delta
 	
-	if player != null:
+	if hunting and player != null:
 		$head/face.look_at(player.global_position+Vector3(0,0.5,0),Vector3(0,1,0))
+	
+	if !hunting:
+		look()
 	
 	if shot:
 		hurt = true
 		shot = false
 		heat += delta
+		hunting = true
 	else:
 		hurt = false
 		heat -= delta*0.5
@@ -72,9 +78,22 @@ func _process(delta):
 
 func _integrate_forces(state):
 	state.linear_velocity *= Vector3(0.99,1.0,0.99)
-	if player != null:
-		state.linear_velocity += ((player.global_position-global_position)*Vector3(1,0.25,1)).normalized()*walk_speed*(1-heat)
+	if hunting:
+		if player != null:
+			state.linear_velocity += ((player.global_position-global_position)*Vector3(1,0.25,1)).normalized()*walk_speed*(1-heat)
 	
 
 func shoot():
 	shot = true
+
+func look():
+	if player != null:
+		if (global_position-player.global_position).length() <=hunt_range:
+			var space = get_world_3d().direct_space_state
+			var query = PhysicsRayQueryParameters3D.create($head.global_position, player.global_position+Vector3(0,0.5,0))
+			query.collide_with_areas = false
+			var collision = space.intersect_ray(query)
+			if collision:
+				var target = collision.collider
+				if target is Player:
+					hunting = true

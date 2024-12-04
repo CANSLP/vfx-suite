@@ -25,6 +25,7 @@
 
 [sub_resource type="Environment" id="Environment_ky6rn"]
 background_mode = 1
+background_color = Color(0.0157512, 0.0232356, 0.0624374, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.156863, 0.168627, 0.282353, 1)
 ambient_light_energy = 15.0
@@ -422,8 +423,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99925, 0, -19.998)
 
 [node name="item bin" type="Node3D" parent="."]
 
-[node name="creature" parent="." instance=ExtResource("22_peeav")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -3.03211, 1, -3.8857)
+[node name="enemies" type="Node3D" parent="."]
 
-[node name="creature2" parent="." instance=ExtResource("22_peeav")]
-transform = Transform3D(0.709632, 0, 0.704572, 0, 1, 0, -0.704572, 0, 0.709632, 0.93308, 1, -5.18856)
+[node name="creature" parent="enemies" instance=ExtResource("22_peeav")]
+transform = Transform3D(0.873373, 0, 0.487052, 0, 1, 0, -0.487052, 0, 0.873373, -6.91418, 1, -14.8425)
+
+[node name="creature2" parent="enemies" instance=ExtResource("22_peeav")]
+transform = Transform3D(-0.383264, 0, 0.923639, 0, 1, 0, -0.923639, 0, -0.383264, 4.96825, 1, -13.5983)
+
+[node name="creature3" parent="enemies" instance=ExtResource("22_peeav")]
+transform = Transform3D(0.611527, 0, -0.791224, 0, 1, 0, 0.791224, 0, 0.611527, 8.66973, 1, 10.0332)
+
+[node name="creature4" parent="enemies" instance=ExtResource("22_peeav")]
+transform = Transform3D(-0.93688, 0, -0.349652, 0, 1, 0, 0.349652, 0, -0.93688, -11.1092, 1, -0.176236)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://551o2woiatgt"]
+
+[ext_resource type="PackedScene" uid="uid://vywh8g8m0ib7" path="res://classes/fx/crystal_burst.tscn" id="1_cend4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CrystalBurst" parent="." instance=ExtResource("1_cend4")]
+
+[node name="Camera3D" type="Camera3D" parent="CrystalBurst"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)

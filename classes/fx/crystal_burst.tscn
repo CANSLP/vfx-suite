@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://vywh8g8m0ib7"]
+
+[ext_resource type="Script" path="res://scripts/crystal_burst.gd" id="1_4yaix"]
+[ext_resource type="Shader" path="res://assets/shaders/fx_crystal_blast.gdshader" id="2_q32n3"]
+[ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_je1lf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
+size = Vector2(0.1, 2)
+
+[sub_resource type="Gradient" id="Gradient_0kesd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bdxb"]
+render_priority = 0
+shader = ExtResource("2_q32n3")
+shader_parameter/color = Vector3(0, 1, 1)
+shader_parameter/power = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_avch0"]
+
+[node name="CrystalBurst" type="Node3D"]
+script = ExtResource("1_4yaix")
+
+[node name="light" type="OmniLight3D" parent="."]
+light_color = Color(0.784314, 1, 1, 1)
+light_energy = 5.0
+
+[node name="rays" type="CPUParticles3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+material_override = ExtResource("5_je1lf")
+cast_shadow = 0
+emitting = false
+amount = 32
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.9
+mesh = SubResource("QuadMesh_rtvev")
+emission_shape = 2
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.1
+radial_accel_max = 0.1
+color_ramp = SubResource("Gradient_0kesd")
+
+[node name="blast" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_5bdxb")
+mesh = SubResource("SphereMesh_avch0")
