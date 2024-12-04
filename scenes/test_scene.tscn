@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6s4l7gqnbd68"]
+[gd_scene load_steps=27 format=3 uid="uid://b6s4l7gqnbd68"]
 
 [ext_resource type="PackedScene" uid="uid://cp0q2snacikok" path="res://classes/player.tscn" id="1_2akv7"]
 [ext_resource type="PackedScene" uid="uid://dckkta0gytuqq" path="res://classes/props/architecture/ground.tscn" id="2_8keuo"]
@@ -21,7 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://db0rbr61h7al2" path="res://classes/props/architecture/fence.tscn" id="19_nap46"]
 [ext_resource type="PackedScene" uid="uid://ew3hx62suldr" path="res://classes/props/architecture/floor.tscn" id="20_bj00v"]
 [ext_resource type="PackedScene" uid="uid://4dgl6tbk2piw" path="res://classes/props/architecture/wall_unit.tscn" id="21_sdvdq"]
+[ext_resource type="Script" path="res://scripts/grass_spawner.gd" id="22_e1bq4"]
 [ext_resource type="PackedScene" uid="uid://b6nhl76eq38as" path="res://classes/creature.tscn" id="22_peeav"]
+[ext_resource type="PackedScene" uid="uid://b12vbpisw4o4i" path="res://classes/props/grass_blade.tscn" id="23_nchnk"]
+[ext_resource type="Texture2D" uid="uid://ctnrg08i36emq" path="res://assets/textures/grass_mask.png" id="24_1yj02"]
 
 [sub_resource type="Environment" id="Environment_ky6rn"]
 background_mode = 1
@@ -251,11 +254,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.00075, 0, 5.00196)
 [node name="column4" parent="geometry" instance=ExtResource("15_2tb41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0007, 0, -0.998039)
 
+[node name="column5" parent="geometry" instance=ExtResource("15_2tb41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0007, 0, -11.998)
+
+[node name="column9" parent="geometry" instance=ExtResource("15_2tb41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0007, 0, -15.998)
+
+[node name="column8" parent="geometry" instance=ExtResource("15_2tb41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0007, 0, -20.998)
+
+[node name="column6" parent="geometry" instance=ExtResource("15_2tb41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0007, -1, -13.998)
+
+[node name="column7" parent="geometry" instance=ExtResource("15_2tb41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0007, -1, -11.998)
+
 [node name="stairs" parent="geometry" instance=ExtResource("16_bg7qi")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 2)
 
 [node name="column_stump" parent="geometry" instance=ExtResource("17_n4302")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4.5)
+
+[node name="column_stump8" parent="geometry" instance=ExtResource("17_n4302")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 7.5)
+
+[node name="column_stump4" parent="geometry" instance=ExtResource("17_n4302")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -14.5)
+
+[node name="column_stump6" parent="geometry" instance=ExtResource("17_n4302")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -11.5)
+
+[node name="column_stump7" parent="geometry" instance=ExtResource("17_n4302")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -20.5)
+
+[node name="column_stump5" parent="geometry" instance=ExtResource("17_n4302")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -16.5)
 
 [node name="column_stump3" parent="geometry" instance=ExtResource("17_n4302")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1, -8.5)
@@ -407,6 +440,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0
 [node name="fence16" parent="geometry" instance=ExtResource("19_nap46")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0007, 1, -8.99804)
 
+[node name="fence19" parent="geometry" instance=ExtResource("19_nap46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0007, 0, -14.498)
+
 [node name="wall_curve8" parent="geometry" instance=ExtResource("6_4sawk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.00075, 0, 1.00196)
 
@@ -424,12 +460,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99925, 0, -19.998)
 
 [node name="props" type="Node3D" parent="."]
 
+[node name="grass" type="Node3D" parent="props"]
+script = ExtResource("22_e1bq4")
+pk_grass = ExtResource("23_nchnk")
+mask_texture = ExtResource("24_1yj02")
+
 [node name="item bin" type="Node3D" parent="."]
 
 [node name="enemies" type="Node3D" parent="."]
 
 [node name="creature" parent="enemies" instance=ExtResource("22_peeav")]
-transform = Transform3D(0.873373, 0, 0.487052, 0, 1, 0, -0.487052, 0, 0.873373, -6.91418, 1, -14.8425)
+transform = Transform3D(0.873373, 0, 0.487052, 0, 1, 0, -0.487052, 0, 0.873373, -6.91418, 1, -16.8425)
 
 [node name="creature2" parent="enemies" instance=ExtResource("22_peeav")]
 transform = Transform3D(-0.383264, 0, 0.923639, 0, 1, 0, -0.923639, 0, -0.383264, 4.96825, 1, -13.5983)

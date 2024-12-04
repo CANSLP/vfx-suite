@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b12vbpisw4o4i"]
+
+[ext_resource type="PackedScene" uid="uid://dxpxytb3eym61" path="res://assets/models/grass_blade.glb" id="1_eeact"]
+[ext_resource type="Material" uid="uid://bgd3nirm3oijd" path="res://assets/materials/grass_green.tres" id="2_4kpj4"]
+
+[node name="grass_blade" instance=ExtResource("1_eeact")]
+
+[node name="Plane" parent="." index="0"]
+material_override = ExtResource("2_4kpj4")
+cast_shadow = 0

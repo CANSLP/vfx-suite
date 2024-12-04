@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gq8avtasvfso"]
+[gd_scene load_steps=12 format=3 uid="uid://gq8avtasvfso"]
 
 [ext_resource type="Script" path="res://scripts/dead_head.gd" id="1_pepgh"]
 [ext_resource type="PackedScene" path="res://classes/head.tscn" id="1_w7cco"]
@@ -26,6 +26,10 @@ offsets = PackedFloat32Array(0, 0.493333, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.12, 0.12, 0.12, 1, 1, 1, 1, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_yfav8"]
+
+[sub_resource type="Curve" id="Curve_3flk7"]
+_data = [Vector2(0.752809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -13.0403, 0.0, 0, 0]
+point_count = 2
 
 [node name="dead_head" type="RigidBody3D"]
 contact_monitor = true
@@ -76,3 +80,4 @@ initial_velocity_min = 1.0
 initial_velocity_max = 15.0
 scale_amount_min = 0.1
 scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_3flk7")
