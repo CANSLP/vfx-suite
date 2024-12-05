@@ -75,3 +75,23 @@ color_ramp = SubResource("Gradient_gwcre")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1kqsm")
+
+[node name="puff" type="CPUParticles3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0)
+material_override = SubResource("ShaderMaterial_kpt43")
+emitting = false
+amount = 32
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("QuadMesh_7rtpe")
+emission_shape = 1
+emission_sphere_radius = 0.25
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+damping_min = 0.75
+damping_max = 1.25
+damping_curve = SubResource("Curve_n5r2e")
+color_ramp = SubResource("Gradient_gwcre")

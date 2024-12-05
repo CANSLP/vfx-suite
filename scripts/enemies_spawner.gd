@@ -38,10 +38,11 @@ func spawn():
 	#print("spawn")
 	var creature = pk_creature.instantiate()
 	creature.get_node("head/smoke").emitting = false
+	creature.get_node("puff").emitting = false
 	add_child(creature)
 	creature.rotation.y = randf_range(0,2*PI)
 	creature.global_position = Vector3(0,1,0)
 	creature.global_position -= creature.global_basis.z * 25
 	creature.hunting = true
 	creature.get_node("head/smoke").emitting = true
-	
+	creature.get_node("puff").emitting = true

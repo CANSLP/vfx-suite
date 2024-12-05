@@ -21,13 +21,18 @@ var player : Player
 var hunting = false
 var hunt_range = 10.0
 
+var seed : float
+
+var target_position : Vector3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var players = get_tree().get_nodes_in_group("player")
 	if len(players) > 0:
 		player = players[0]
 	
-	walk_speed *= remap(randf(),0,1,0.9,1.1)
+	seed = randf()
+	walk_speed *= remap(randf(),0,1,0.75,1.125)
 	
 	head_mat = $head/Icosphere.material_override
 	head_mat = head_mat.duplicate()
@@ -82,9 +87,15 @@ func _process(delta):
 
 func _integrate_forces(state):
 	state.linear_velocity *= Vector3(0.99,1.0,0.99)
+	target_position = global_position
 	if hunting:
 		if player != null:
-			state.linear_velocity += ((player.global_position-global_position)*Vector3(1,0.25,1)).normalized()*walk_speed*(1-heat)
+			target_position = player.global_position
+			var sp = 1.0
+			if seed < 0.5:
+				sp = -sp
+			target_position += Vector3(sin((4.0*PI*seed)+time*sp)*1.5,0,cos((4.0*PI*seed)+time*sp)*1.5)
+		state.linear_velocity += ((target_position-global_position)*Vector3(1,0.25,1)).normalized()*walk_speed*(1-heat)
 	
 
 func shoot():
