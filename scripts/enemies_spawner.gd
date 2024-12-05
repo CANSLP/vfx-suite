@@ -35,7 +35,7 @@ func _process(delta):
 	timer -= delta
 
 func spawn():
-	print("spawn")
+	#print("spawn")
 	var creature = pk_creature.instantiate()
 	creature.get_node("head/smoke").emitting = false
 	add_child(creature)
