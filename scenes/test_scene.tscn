@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://b6s4l7gqnbd68"]
+[gd_scene load_steps=34 format=3 uid="uid://b6s4l7gqnbd68"]
 
 [ext_resource type="PackedScene" uid="uid://cp0q2snacikok" path="res://classes/player.tscn" id="1_2akv7"]
+[ext_resource type="Shader" path="res://assets/shaders/sky.gdshader" id="2_2s5rw"]
 [ext_resource type="PackedScene" uid="uid://dckkta0gytuqq" path="res://classes/props/architecture/ground.tscn" id="2_8keuo"]
 [ext_resource type="PackedScene" uid="uid://dkeafs7nylir5" path="res://classes/props/architecture/wall_platform.tscn" id="3_r7q43"]
 [ext_resource type="PackedScene" uid="uid://8y8ff4qqbqx4" path="res://classes/props/architecture/wall_door.tscn" id="4_f8eve"]
@@ -30,9 +31,18 @@
 [ext_resource type="PackedScene" uid="uid://fncmdrgk4k1k" path="res://classes/props/tree_2.tscn" id="27_46lwl"]
 [ext_resource type="Script" path="res://scripts/enemies_spawner.gd" id="28_1avfq"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1h7v"]
+shader = ExtResource("2_2s5rw")
+shader_parameter/sky_color = Color(1.08745e-05, 0.0116835, 0.109591, 1)
+shader_parameter/cloud_color = Color(0, 0.027451, 0.180392, 1)
+
+[sub_resource type="Sky" id="Sky_i4af2"]
+sky_material = SubResource("ShaderMaterial_f1h7v")
+
 [sub_resource type="Environment" id="Environment_ky6rn"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0, 0.027451, 0.180392, 1)
+sky = SubResource("Sky_i4af2")
 ambient_light_source = 2
 ambient_light_color = Color(0.156863, 0.168627, 0.282353, 1)
 ambient_light_energy = 15.0
