@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnqnitcua60ew"]
+
+[ext_resource type="PackedScene" uid="uid://dxpxytb3eym61" path="res://assets/models/grass_blade.glb" id="1_qulis"]
+[ext_resource type="Material" uid="uid://cc2j2icpl46sk" path="res://assets/materials/grass_orange.tres" id="2_8ywof"]
+
+[node name="grass_blade" instance=ExtResource("1_qulis")]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Plane" parent="." index="0"]
+material_override = ExtResource("2_8ywof")
+cast_shadow = 0

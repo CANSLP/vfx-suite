@@ -1,9 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://gq8avtasvfso"]
 
 [ext_resource type="Script" path="res://scripts/dead_head.gd" id="1_pepgh"]
-[ext_resource type="PackedScene" path="res://classes/head.tscn" id="1_w7cco"]
+[ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_w7cco"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="2_j872k"]
-[ext_resource type="Material" path="res://assets/materials/crystal.tres" id="4_1623x"]
+[ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_1623x"]
+[ext_resource type="ArrayMesh" uid="uid://coo4lbk6yauo1" path="res://assets/models/fx/shard.obj" id="5_dax4i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qiuhi"]
 radius = 0.4
@@ -24,8 +25,6 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_vrkdx"]
 offsets = PackedFloat32Array(0, 0.493333, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.12, 0.12, 0.12, 1, 1, 1, 1, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_yfav8"]
 
 [sub_resource type="Curve" id="Curve_3flk7"]
 _data = [Vector2(0.752809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -13.0403, 0.0, 0, 0]
@@ -70,7 +69,7 @@ lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
-mesh = SubResource("PrismMesh_yfav8")
+mesh = ExtResource("5_dax4i")
 emission_shape = 1
 emission_sphere_radius = 0.5
 particle_flag_align_y = true
@@ -78,6 +77,6 @@ spread = 90.0
 gravity = Vector3(0, -8, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 15.0
-scale_amount_min = 0.1
-scale_amount_max = 0.25
+scale_amount_min = 0.05
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_3flk7")

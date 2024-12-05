@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://fncmdrgk4k1k"]
+
+[ext_resource type="PackedScene" uid="uid://hc0m8elplbwk" path="res://assets/models/tree_2.glb" id="1_q7xbm"]
+[ext_resource type="Material" uid="uid://4xvwmnkhnvd2" path="res://assets/materials/leaves.tres" id="2_aagv3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6nfip"]
+height = 4.0
+
+[node name="pine" instance=ExtResource("1_q7xbm")]
+
+[node name="Cone" parent="." index="0"]
+material_override = ExtResource("2_aagv3")
+
+[node name="Cone_001" parent="." index="1"]
+material_override = ExtResource("2_aagv3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("CylinderShape3D_6nfip")

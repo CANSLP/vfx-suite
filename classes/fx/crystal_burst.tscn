@@ -4,6 +4,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/fx_crystal_blast.gdshader" id="2_q32n3"]
 [ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_2of1j"]
 [ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_je1lf"]
+[ext_resource type="ArrayMesh" uid="uid://coo4lbk6yauo1" path="res://assets/models/fx/shard.obj" id="5_s8p8v"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
 size = Vector2(0.1, 2)
@@ -17,8 +18,6 @@ shader_parameter/color = Vector3(0, 1, 1)
 shader_parameter/power = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_avch0"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_nwnvo"]
 
 [node name="CrystalBurst" type="Node3D"]
 script = ExtResource("1_4yaix")
@@ -59,7 +58,7 @@ lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
-mesh = SubResource("PrismMesh_nwnvo")
+mesh = ExtResource("5_s8p8v")
 emission_shape = 1
 emission_sphere_radius = 0.5
 particle_flag_align_y = true
@@ -67,5 +66,5 @@ spread = 180.0
 gravity = Vector3(0, -8, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 20.0
-scale_amount_min = 0.1
-scale_amount_max = 0.25
+scale_amount_min = 0.05
+scale_amount_max = 0.2

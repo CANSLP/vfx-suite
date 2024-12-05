@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cc2j2icpl46sk"]
+
+[ext_resource type="Shader" path="res://assets/shaders/foliage.gdshader" id="1_l83n1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l83n1")
+shader_parameter/color = Color(1, 0.584314, 0, 1)
