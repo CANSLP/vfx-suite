@@ -23,9 +23,11 @@ func _integrate_forces(state):
 	on_ground = false
 	if state.get_contact_count() > 0:
 		for contact in range(state.get_contact_count()):
-			var clayer = state.get_contact_collider_object(contact).get_collision_layer()
-			if clayer != 128:
-				on_ground = true
+			var collider = state.get_contact_collider_object(contact)
+			if collider:
+				var clayer = collider.get_collision_layer()
+				if clayer != 128:
+					on_ground = true
 	if on_ground:
 		state.linear_velocity *= Vector3(0.95,1.0,0.95)
 
