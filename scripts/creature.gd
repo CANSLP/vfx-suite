@@ -43,7 +43,7 @@ func _process(delta):
 	time += delta
 	
 	if hunting and player != null:
-		$head/face.look_at(player.global_position+Vector3(0,0.5,0),Vector3(0,1,0))
+		$head/face.look_at(player.get_node("camera").global_position,Vector3(0,1,0))
 	
 	if !hunting:
 		look()
@@ -65,7 +65,7 @@ func _process(delta):
 	$head/Icosphere.scale = Vector3(1,1,1)*(1+0.25*pow(heat,5.0))
 	head_mat.set("shader_parameter/glow",pow(heat,3.0))
 	$head/light.light_energy = pow(heat,5.0)*2.5
-	face_mat.set("shader_parameter/color",Vector3(0.5+heat,3,3))
+	face_mat.set("shader_parameter/color",Vector3(1.0+heat,0.58+heat,heat))
 	if hurt:
 		face_mat.set("shader_parameter/mask",tx_face_hurt)
 	else:
@@ -94,7 +94,7 @@ func look():
 	if player != null:
 		if (global_position-player.global_position).length() <=hunt_range:
 			var space = get_world_3d().direct_space_state
-			var query = PhysicsRayQueryParameters3D.create($head.global_position, player.global_position+Vector3(0,0.5,0))
+			var query = PhysicsRayQueryParameters3D.create($head.global_position, player.get_node("camera").global_position)
 			query.collide_with_areas = false
 			var collision = space.intersect_ray(query)
 			if collision:

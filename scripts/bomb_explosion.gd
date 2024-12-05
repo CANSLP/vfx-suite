@@ -25,7 +25,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	time += delta
 	$light.light_energy = 25*clamp(pow(2.0*(0.5-time),5.0),0,1)
 	
 	$rims.scale = Vector3(1,1,1)*clamp(pow(time*5.0,0.5),0,1)
@@ -38,6 +37,9 @@ func _process(delta):
 	
 	if time > 2.5:
 		queue_free()
+	if $Area3D != null and time > 0.0:
+		$Area3D.queue_free()
+	time += delta
 
 
 func _area_enter(area):

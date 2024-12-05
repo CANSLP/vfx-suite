@@ -28,7 +28,7 @@ blend_shape_mode = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hrpsp"]
 render_priority = 0
 shader = ExtResource("3_isb5e")
-shader_parameter/color = Vector3(0.5, 3, 3)
+shader_parameter/color = Color(1, 0.584314, 0, 1)
 shader_parameter/mask = ExtResource("4_t32cp")
 shader_parameter/distort = ExtResource("4_xxgul")
 

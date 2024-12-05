@@ -35,7 +35,7 @@ func _input(event):
 			Items.BOMB:
 				throw_bomb()
 			Items.SWORD:
-				swing_sword()
+				swing_sword(true)
 			Items.WAND:
 				start_wand()
 	if event.is_action_released("click"):
@@ -43,9 +43,12 @@ func _input(event):
 			Items.BOMB:
 				pass
 			Items.SWORD:
-				unswing_sword()
+				pass
 			Items.WAND:
 				stop_wand()
+	if event.is_action_pressed("swap"):
+		if hand_item != Items.SWORD:
+			swing_sword(false)
 	if event.is_action_pressed("hand_scroll+"):
 		hand_item += 1
 		stop_actions()
@@ -63,7 +66,6 @@ func _input(event):
 		stop_actions()
 
 func stop_actions():
-	unswing_sword()
 	stop_wand()
 
 func _process(delta):
@@ -86,16 +88,13 @@ func update_hand():
 			hand_props[i].visible = (i==hand_item)
 
 
-func swing_sword():
+func swing_sword(real : bool):
 	hand_side = -hand_side
 	$sword.swipe_to(-20*hand_side,-70*hand_side,0.1,60*hand_side,hand_side)
-	var areas = player.get_shoot_areas(1.0)
-	if areas != null:
-		areas.get_parent().get_parent().die((hand_side*global_basis.x-global_basis.z)*10)
-
-func unswing_sword():
-	#sword_rot = sword_up_rot
-	pass
+	if real:
+		var areas = player.get_shoot_areas(1.0)
+		if areas != null:
+			areas.get_parent().get_parent().die((hand_side*global_basis.x-global_basis.z)*10)
 
 func throw_bomb():
 	var bomb = pf_bomb.instantiate()

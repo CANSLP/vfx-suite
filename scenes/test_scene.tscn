@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b6s4l7gqnbd68"]
+[gd_scene load_steps=31 format=3 uid="uid://b6s4l7gqnbd68"]
 
 [ext_resource type="PackedScene" uid="uid://cp0q2snacikok" path="res://classes/player.tscn" id="1_2akv7"]
 [ext_resource type="PackedScene" uid="uid://dckkta0gytuqq" path="res://classes/props/architecture/ground.tscn" id="2_8keuo"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dnqnitcua60ew" path="res://classes/props/grass_blade_orange.tscn" id="26_6qlm4"]
 [ext_resource type="PackedScene" uid="uid://cir747h4yit0d" path="res://classes/props/tree_1.tscn" id="26_il5c5"]
 [ext_resource type="PackedScene" uid="uid://fncmdrgk4k1k" path="res://classes/props/tree_2.tscn" id="27_46lwl"]
+[ext_resource type="Script" path="res://scripts/enemies_spawner.gd" id="28_1avfq"]
 
 [sub_resource type="Environment" id="Environment_ky6rn"]
 background_mode = 1
@@ -707,6 +708,8 @@ transform = Transform3D(0.691423, 0, 0.290576, 0, 0.75, 0, -0.290576, 0, 0.69142
 [node name="item bin" type="Node3D" parent="."]
 
 [node name="enemies" type="Node3D" parent="."]
+script = ExtResource("28_1avfq")
+pk_creature = ExtResource("22_peeav")
 
 [node name="creature" parent="enemies" instance=ExtResource("22_peeav")]
 transform = Transform3D(0.873373, 0, 0.487052, 0, 1, 0, -0.487052, 0, 0.873373, -6.91418, 1, -16.8425)

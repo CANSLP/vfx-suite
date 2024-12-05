@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, depth_draw_never;
-uniform vec3 color = vec3(1.0);
+uniform vec3 color : source_color;
 uniform sampler2D mask;
 uniform sampler2D distort;
 

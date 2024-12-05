@@ -36,6 +36,9 @@ var last_pos
 
 var walk_bob = 0.0
 
+@export var boundary : float = 25
+@export var use_boundary : bool = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -160,6 +163,14 @@ func _process(delta):
 	
 	#get the mouse target
 	get_target()
+	
+	if use_boundary:
+		var vec = Vector2(global_position.x,global_position.z)
+		var radius = vec.length()
+		if radius > boundary:
+			vec = vec.normalized()*boundary
+			global_position.x = vec.x
+			global_position.z = vec.y
 
 #what object is the mouse hovering over
 func get_target():
