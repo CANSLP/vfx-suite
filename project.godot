@@ -16,6 +16,12 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 config/icon="res://assets/textures/icon.svg"
 
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/aspect="keep_width"
+
 [global_group]
 
 player=""

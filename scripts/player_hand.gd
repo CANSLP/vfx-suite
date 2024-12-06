@@ -16,6 +16,9 @@ enum Items {SWORD,WAND,BOMB}
 
 var update_watch
 
+var has_swapped = false
+var has_scrolled = false
+
 var hand_side = 1
 var throw_vector = Vector3(-0.1*hand_side,0,-1)
 
@@ -52,18 +55,23 @@ func _input(event):
 	if event.is_action_pressed("hand_scroll+"):
 		hand_item += 1
 		stop_actions()
+		has_scrolled = true
 	if event.is_action_pressed("hand_scroll-"):
 		hand_item -= 1
 		stop_actions()
+		has_scrolled = true
 	if event.is_action_pressed("hand_1"):
 		hand_item = 0
 		stop_actions()
+		has_swapped = true
 	if event.is_action_pressed("hand_2"):
 		hand_item = 1
 		stop_actions()
+		has_swapped = true
 	if event.is_action_pressed("hand_3"):
 		hand_item = 2
 		stop_actions()
+		has_swapped = true
 
 func stop_actions():
 	stop_wand()

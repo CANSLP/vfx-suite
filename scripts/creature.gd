@@ -95,6 +95,11 @@ func _process(delta):
 	if !$sfx_heat.is_playing():
 		$sfx_heat.play()
 	
+	if player != null:
+		var dist = (global_position-player.global_position).length()
+		if dist < 5.0:
+			player.add_haunt(clamp((6-dist)/5.0,0,1))
+	
 	if global_position.y < -10:
 		queue_free()
 

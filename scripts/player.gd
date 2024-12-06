@@ -39,12 +39,16 @@ var walk_bob = 0.0
 @export var boundary : float = 25
 @export var use_boundary : bool = true
 
+var mat_postproc : Material
+var haunt : float = 0.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_window().title = "" #set the window title (this should be put somewhere else lol)
 	last_pos = position
 	$camera/hand.player = self
+	mat_postproc = $hud/postproc.material
 
 
 func _integrate_forces(state):
@@ -176,6 +180,10 @@ func _process(delta):
 		$sfx/sfx_birds.play()
 	if !$sfx/sfx_wind.is_playing():
 		$sfx/sfx_wind.play()
+	
+	mat_postproc.set("shader_parameter/haunt",haunt)
+	haunt = lerp(haunt,0.0,delta*1.0)
+
 #what object is the mouse hovering over
 func get_target():
 	if target and is_instance_valid(target):
@@ -206,7 +214,7 @@ func get_shoot_target(range : float):
 func get_shoot_areas(range : float):
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create($camera.global_position,
-			$camera.global_position - $camera.global_transform.basis.z * range)
+			$camera.global_position - (($camera.global_transform.basis.z) * range))
 	query.collide_with_areas = true
 	var collision = space.intersect_ray(query)
 	var collider = collision.get("collider")
@@ -235,6 +243,8 @@ func get_ground(state):
 				return
 	on_ground = false
 
+func add_haunt(amt : float):
+	haunt = max(haunt,amt)
 
 func _input(event):
 	if event is InputEventMouseMotion:

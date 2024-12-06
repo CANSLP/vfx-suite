@@ -35,7 +35,7 @@
 shader = ExtResource("2_2s5rw")
 shader_parameter/sky_color = Color(1.08745e-05, 0.0116835, 0.109591, 1)
 shader_parameter/cloud_color = Color(0, 0.027451, 0.180392, 1)
-shader_parameter/light_color = Color(0.0528, 0.07788, 0.22, 1)
+shader_parameter/light_color = Color(0.06, 0.0885, 0.25, 1)
 
 [sub_resource type="Sky" id="Sky_i4af2"]
 sky_material = SubResource("ShaderMaterial_f1h7v")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cp0q2snacikok"]
+[gd_scene load_steps=28 format=3 uid="uid://cp0q2snacikok"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e06wh"]
 [ext_resource type="Script" path="res://scripts/player_hand.gd" id="2_6g0fi"]
@@ -16,6 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://ddcp7ke3n0idp" path="res://assets/audio/scrape.mp3" id="8_7tpdr"]
 [ext_resource type="AudioStream" uid="uid://dm17qapgt4735" path="res://assets/audio/punch.mp3" id="8_o8law"]
 [ext_resource type="AudioStream" uid="uid://3cicqms78mng" path="res://assets/audio/clink.mp3" id="9_bi6ty"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="11_l5ebi"]
+[ext_resource type="Texture2D" uid="uid://bokkuswhvrawx" path="res://assets/textures/perlin_normals.png" id="12_ggyif"]
+[ext_resource type="Texture2D" uid="uid://b2mljpq7b1xjy" path="res://assets/textures/prompt_swap_1.png" id="12_ra3gh"]
+[ext_resource type="Texture2D" uid="uid://bs8paqntra30h" path="res://assets/textures/prompt_move.png" id="13_6w60l"]
+[ext_resource type="Texture2D" uid="uid://yq1k2ut7rxkd" path="res://assets/textures/prompt_swap_2.png" id="13_21len"]
 [ext_resource type="AudioStream" uid="uid://dgnkgr3cigh60" path="res://assets/audio/birds.wav" id="13_a58pd"]
 [ext_resource type="Shader" path="res://assets/shaders/postproc.gdshader" id="13_yev0q"]
 [ext_resource type="AudioStream" uid="uid://cllgx0xf2e0t4" path="res://assets/audio/wind.wav" id="14_sx202"]
@@ -28,6 +33,8 @@ friction = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uqac6"]
 shader = ExtResource("13_yev0q")
 shader_parameter/pixel_size = 4.0
+shader_parameter/haunt = 0.0
+shader_parameter/distort = ExtResource("12_ggyif")
 
 [node name="player" type="RigidBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -98,8 +105,39 @@ volume_db = -5.0
 max_polyphony = 2
 
 [node name="hud" type="CanvasLayer" parent="."]
+script = ExtResource("11_l5ebi")
 
-[node name="ColorRect" type="ColorRect" parent="hud"]
+[node name="prompt_move" type="TextureRect" parent="hud"]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_6w60l")
+
+[node name="prompt_swap" type="TextureRect" parent="hud"]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_ra3gh")
+
+[node name="prompt_scroll" type="TextureRect" parent="hud"]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_21len")
+
+[node name="postproc" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_uqac6")
 anchors_preset = 15
 anchor_right = 1.0
