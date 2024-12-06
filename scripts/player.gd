@@ -42,6 +42,8 @@ var walk_bob = 0.0
 var mat_postproc : Material
 var haunt : float = 0.0
 
+var shot_count : int = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -290,6 +292,11 @@ func _input(event):
 		kRUN = true
 	if event.is_action_released("run"):
 		kRUN = false
+	if event.is_action_pressed("screenshot"):
+		var image = get_viewport().get_texture().get_image()
+		image.save_png("screenshots/screenshot_"+str(shot_count)+".png")
+		shot_count += 1
+
 
 #spherecast return struct
 class SphereCastResult:

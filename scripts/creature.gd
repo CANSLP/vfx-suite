@@ -44,6 +44,8 @@ func _ready():
 	
 	$sfx_noise.pitch_scale = randf_range(0.75,1.25)
 	$sfx_heat.volume_db = -80
+	$sfx_fizz.pitch_scale = randf_range(0.9,1.125)
+	$sfx_fizz.volume_db = -80
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -94,6 +96,13 @@ func _process(delta):
 		$sfx_heat.volume_db = lerp($sfx_heat.volume_db,-80.0,delta*5)
 	if !$sfx_heat.is_playing():
 		$sfx_heat.play()
+	
+	if hurt:
+		$sfx_fizz.volume_db = lerp($sfx_fizz.volume_db,-10.0,delta*30)
+	else:
+		$sfx_fizz.volume_db = lerp($sfx_fizz.volume_db,-80.0,delta*5)
+	if !$sfx_fizz.is_playing():
+		$sfx_fizz.play()
 	
 	if player != null:
 		var dist = (global_position-player.global_position).length()

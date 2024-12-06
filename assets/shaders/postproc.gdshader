@@ -10,7 +10,7 @@ float random (vec2 uv) {
 void fragment() {
 	//vec2 res = 1.0/SCREEN_PIXEL_SIZE/pixel_size;
 	vec2 res = vec2(1920,1080)/pixel_size;
-	vec2 _uv = round(UV*res)/res;
+	vec2 _uv = floor(UV*res)/res;
 	vec2 _d = vec2(0.0);
 	if(haunt > 0.5){
 		_d = (texture(distort,_uv+vec2(TIME*0.25)).xy*texture(distort,1.5*_uv+vec2(-TIME*0.25)).xy)+vec2(-0.25);

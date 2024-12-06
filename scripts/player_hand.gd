@@ -117,6 +117,8 @@ func throw_bomb():
 	item_bin.add_child(bomb)
 	bomb.global_position = $bomb.global_position
 	bomb.linear_velocity = player.linear_velocity+((global_basis*throw_vector)+Vector3(0,0.5,0))*7.5
+	$sfx/sfx_whoosh.pitch_scale = randf_range(0.8,1.0)
+	$sfx/sfx_whoosh.play()
 
 func start_wand():
 	$wand.shooting = true
