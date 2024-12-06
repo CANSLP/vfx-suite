@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled;
-uniform sampler2D mask;
+uniform sampler2D mask : repeat_disable;
 uniform float power = 0.5;
 uniform vec3 color;
 uniform float brightness = 5.0;
