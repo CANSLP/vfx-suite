@@ -7,6 +7,6 @@
 render_priority = 0
 shader = ExtResource("1_ake6o")
 shader_parameter/color = Vector3(0.1, 1, 1)
-shader_parameter/brightness = 5.0
-shader_parameter/time = 0.5
+shader_parameter/brightness = 0.0
+shader_parameter/time = 1.0
 shader_parameter/mask = ExtResource("2_iudkg")
