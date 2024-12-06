@@ -38,6 +38,10 @@ func _process(delta):
 	charge = clamp(0.5+(pow(2.0,curve-1))*pow(0.5-fuse,curve),0,1)
 	mat_seam.set("shader_parameter/power",charge);
 	mat_seam.set("shader_parameter/brightness",charge*5.0);
+	if fuse <= max_fuse*0.5:
+		if !$sfx_fuse.is_playing():
+			$sfx_fuse.pitch_scale = randf_range(1.25,1.35)
+			$sfx_fuse.play()
 	if fuse <= 0:
 		var fx = pk_fx.instantiate()
 		fx.global_transform = global_transform

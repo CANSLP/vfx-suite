@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cp0q2snacikok"]
+[gd_scene load_steps=23 format=3 uid="uid://cp0q2snacikok"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e06wh"]
 [ext_resource type="Script" path="res://scripts/player_hand.gd" id="2_6g0fi"]
@@ -12,7 +12,13 @@
 [ext_resource type="AudioStream" uid="uid://csw07gy13fbvo" path="res://assets/audio/splash_in.mp3" id="6_1md7h"]
 [ext_resource type="PackedScene" uid="uid://dq5cnqdqoivsh" path="res://classes/items/wand.tscn" id="6_t8igu"]
 [ext_resource type="AudioStream" uid="uid://cebh4bypevcop" path="res://assets/audio/splash_out.wav" id="7_ot1x2"]
+[ext_resource type="AudioStream" uid="uid://cy36j88rib8d8" path="res://assets/audio/whoosh_0.wav" id="7_u0r11"]
+[ext_resource type="AudioStream" uid="uid://ddcp7ke3n0idp" path="res://assets/audio/scrape.mp3" id="8_7tpdr"]
+[ext_resource type="AudioStream" uid="uid://dm17qapgt4735" path="res://assets/audio/punch.mp3" id="8_o8law"]
+[ext_resource type="AudioStream" uid="uid://3cicqms78mng" path="res://assets/audio/clink.mp3" id="9_bi6ty"]
+[ext_resource type="AudioStream" uid="uid://dgnkgr3cigh60" path="res://assets/audio/birds.wav" id="13_a58pd"]
 [ext_resource type="Shader" path="res://assets/shaders/postproc.gdshader" id="13_yev0q"]
+[ext_resource type="AudioStream" uid="uid://cllgx0xf2e0t4" path="res://assets/audio/wind.wav" id="14_sx202"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrcat"]
 friction = 0.0
@@ -69,27 +75,27 @@ visible = false
 transform = Transform3D(0.5, 0, 0, 0, 0.12941, -0.482963, 0, 0.482963, 0.12941, 0.3, -0.3, -0.4)
 visible = false
 
-[node name="sfx_click_in" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ovt5n")
+[node name="sfx" type="Node" parent="camera/hand"]
 
-[node name="sfx_click_out" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5xlte")
-
-[node name="sfx_jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_qctkc")
+[node name="sfx_whoosh" type="AudioStreamPlayer" parent="camera/hand/sfx"]
+stream = ExtResource("7_u0r11")
 volume_db = -10.0
+max_polyphony = 2
 
-[node name="sfx_land" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_uyeiu")
-volume_db = -15.0
+[node name="sfx_punch" type="AudioStreamPlayer" parent="camera/hand/sfx"]
+stream = ExtResource("8_o8law")
+volume_db = -5.0
+max_polyphony = 2
 
-[node name="sfx_splash_in" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_1md7h")
-volume_db = -15.0
+[node name="sfx_scrape" type="AudioStreamPlayer" parent="camera/hand/sfx"]
+stream = ExtResource("8_7tpdr")
+volume_db = -25.0
+max_polyphony = 2
 
-[node name="sfx_splash_out" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ot1x2")
-volume_db = -20.0
+[node name="sfx_clink" type="AudioStreamPlayer" parent="camera/hand/sfx"]
+stream = ExtResource("9_bi6ty")
+volume_db = -5.0
+max_polyphony = 2
 
 [node name="hud" type="CanvasLayer" parent="."]
 
@@ -100,5 +106,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="sfx_click_in" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("2_ovt5n")
+
+[node name="sfx_birds" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("13_a58pd")
+volume_db = -15.0
+
+[node name="sfx_wind" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("14_sx202")
+volume_db = -15.0
+
+[node name="sfx_click_out" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("3_5xlte")
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("4_qctkc")
+
+[node name="sfx_land" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("5_uyeiu")
+volume_db = -5.0
+
+[node name="sfx_splash_in" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("6_1md7h")
+volume_db = -15.0
+
+[node name="sfx_splash_out" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("7_ot1x2")
+volume_db = -20.0
 
 [editable path="camera/hand/bomb"]

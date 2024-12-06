@@ -40,3 +40,5 @@ func smash(point : Vector3,vel : Vector3,normal : Vector3):
 	#$smash_fx.initial_velocity_max = vel.length()*1.5
 	$smash_fx.emitting = true
 	smashed = true
+	$sfx_smash.pitch_scale = randf_range(0.9,1.25)
+	$sfx_smash.play()

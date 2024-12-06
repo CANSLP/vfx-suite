@@ -23,6 +23,9 @@ func _ready():
 	
 	mat_shell = $beam/shell.material_override
 	mat_corona = $corona.material_override
+	$impact/rays.emitting = false
+	$impact/sfx_impact.volume_db = -80
+	$sfx_laser.volume_db = -80
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,3 +73,17 @@ func _process(delta):
 	
 	if shoot_target != null:
 		$impact.global_position = shoot_target
+	
+	if $impact/rays.emitting:
+		$impact/sfx_impact.volume_db = lerp($impact/sfx_impact.volume_db,-10.0,delta*30)
+	else:
+		$impact/sfx_impact.volume_db = lerp($impact/sfx_impact.volume_db,-80.0,delta*5)
+	if !$impact/sfx_impact.is_playing():
+		$impact/sfx_impact.play()
+	
+	if shooting:
+		$sfx_laser.volume_db = -15
+	else:
+		$sfx_laser.volume_db = lerp($sfx_laser.volume_db,-80.0,delta*5)
+	if !$sfx_laser.is_playing():
+		$sfx_laser.play()

@@ -95,6 +95,14 @@ func swing_sword(real : bool):
 		var areas = player.get_shoot_areas(1.0)
 		if areas != null:
 			areas.get_parent().get_parent().die((hand_side*global_basis.x-global_basis.z)*10)
+			$sfx/sfx_clink.pitch_scale = randf_range(1.0,1.25)
+			$sfx/sfx_clink.play()
+			$sfx/sfx_punch.pitch_scale = randf_range(0.9,1.125)
+			$sfx/sfx_punch.play()
+		$sfx/sfx_whoosh.pitch_scale = randf_range(1.0,1.25)
+		$sfx/sfx_whoosh.play()
+		$sfx/sfx_scrape.pitch_scale = randf_range(1.0,1.25)
+		$sfx/sfx_scrape.play()
 
 func throw_bomb():
 	var bomb = pf_bomb.instantiate()
@@ -117,3 +125,5 @@ func shoot_wand():
 	var areas = player.get_shoot_areas((target[0]-$wand.global_position).length())
 	if areas != null:
 		areas.get_parent().get_parent().shoot()
+		#$wand.shoot_target = areas.get_parent().global_position
+		#$wand.hit = true

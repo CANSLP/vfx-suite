@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://vywh8g8m0ib7"]
+[gd_scene load_steps=12 format=3 uid="uid://vywh8g8m0ib7"]
 
 [ext_resource type="Script" path="res://scripts/crystal_burst.gd" id="1_4yaix"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_crystal_blast.gdshader" id="2_q32n3"]
 [ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_2of1j"]
 [ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_je1lf"]
 [ext_resource type="ArrayMesh" uid="uid://coo4lbk6yauo1" path="res://assets/models/fx/shard.obj" id="5_s8p8v"]
+[ext_resource type="AudioStream" uid="uid://c8v03q1j034bd" path="res://assets/audio/shatter.wav" id="6_ropgn"]
+[ext_resource type="AudioStream" uid="uid://ddftdjayl2slx" path="res://assets/audio/pop.wav" id="7_341bu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtvev"]
 size = Vector2(0.1, 2)
@@ -68,3 +70,13 @@ initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 scale_amount_min = 0.05
 scale_amount_max = 0.2
+
+[node name="sfx_shatter" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_ropgn")
+volume_db = -5.0
+attenuation_filter_db = -12.0
+
+[node name="sfx_pop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_341bu")
+volume_db = -5.0
+attenuation_filter_db = -12.0

@@ -1,6 +1,7 @@
 shader_type sky;
 uniform vec3 sky_color : source_color;
 uniform vec3 cloud_color : source_color;
+uniform vec3 light_color : source_color;
 float mod289_1(float x){return x - floor(x * (1.0 / 289.0)) * 289.0;}
 vec4 mod289_4(vec4 x){return x - floor(x * (1.0 / 289.0)) * 289.0;}
 vec4 perm(vec4 x){return mod289_4(((x * 34.0) + 1.0) * x);}
@@ -27,8 +28,12 @@ float noise(vec3 p){
 }
 void sky() {
 	float n = noise(EYEDIR*15.0+vec3(TIME*0.1,-TIME*0.1,0.0))*noise(EYEDIR*3.0+vec3(0.0,-TIME*0.05,-TIME*0.1));
-	if(EYEDIR.y+n>0.65){
+	if(EYEDIR.y+n>0.75){
 		COLOR = sky_color;
+		float sun_dist = length((EYEDIR-LIGHT0_DIRECTION));
+		if(sun_dist<0.6){
+			COLOR = light_color;
+		}
 	} else {
 		COLOR = cloud_color;
 	}

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://gq8avtasvfso"]
+[gd_scene load_steps=13 format=3 uid="uid://gq8avtasvfso"]
 
 [ext_resource type="Script" path="res://scripts/dead_head.gd" id="1_pepgh"]
 [ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_w7cco"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="2_j872k"]
 [ext_resource type="Material" uid="uid://bq63wpuare6lk" path="res://assets/materials/crystal.tres" id="4_1623x"]
 [ext_resource type="ArrayMesh" uid="uid://coo4lbk6yauo1" path="res://assets/models/fx/shard.obj" id="5_dax4i"]
+[ext_resource type="AudioStream" uid="uid://d12h405oyyhuy" path="res://assets/audio/smash.wav" id="6_c3clp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qiuhi"]
 radius = 0.4
@@ -80,3 +81,8 @@ initial_velocity_max = 15.0
 scale_amount_min = 0.05
 scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_3flk7")
+
+[node name="sfx_smash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_c3clp")
+volume_db = -5.0
+attenuation_filter_db = -12.0

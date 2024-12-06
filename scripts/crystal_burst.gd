@@ -15,6 +15,11 @@ func _ready():
 	$blast.global_rotation = Vector3(0,0,0)
 	$rays.emitting = true
 	$smash_fx.emitting = true
+	
+	$sfx_shatter.pitch_scale = randf_range(0.9,1.25)
+	$sfx_shatter.play()
+	$sfx_pop.pitch_scale = randf_range(0.9,1.25)
+	$sfx_pop.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

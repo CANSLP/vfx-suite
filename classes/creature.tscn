@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6nhl76eq38as"]
+[gd_scene load_steps=16 format=3 uid="uid://b6nhl76eq38as"]
 
 [ext_resource type="Script" path="res://scripts/creature.gd" id="1_0b2nl"]
 [ext_resource type="PackedScene" uid="uid://df5citw0i1ll6" path="res://classes/head.tscn" id="1_1h83e"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://vywh8g8m0ib7" path="res://classes/fx/crystal_burst.tscn" id="4_0tge0"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_bomb_smoke.gdshader" id="5_d7iwf"]
 [ext_resource type="PackedScene" uid="uid://gq8avtasvfso" path="res://classes/dead_head.tscn" id="5_w1bgg"]
+[ext_resource type="AudioStream" uid="uid://dstyyi7xa4vaa" path="res://assets/audio/noise.wav" id="8_hehhi"]
+[ext_resource type="AudioStream" uid="uid://bqru7glc4rbis" path="res://assets/audio/jet.wav" id="9_ape3o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i0p1t"]
 
@@ -95,3 +97,13 @@ damping_min = 0.75
 damping_max = 1.25
 damping_curve = SubResource("Curve_n5r2e")
 color_ramp = SubResource("Gradient_gwcre")
+
+[node name="sfx_noise" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_hehhi")
+volume_db = -15.0
+attenuation_filter_db = -48.0
+
+[node name="sfx_heat" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_ape3o")
+volume_db = -10.0
+attenuation_filter_db = -12.0

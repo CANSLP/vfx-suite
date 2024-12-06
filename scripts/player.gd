@@ -80,7 +80,7 @@ func _integrate_forces(state):
 				if(crouch<0.5):
 					stick = false
 					state.linear_velocity.y = jump_power
-					$sfx_jump.play()
+					$sfx/sfx_jump.play()
 		else:
 			walk_bob += (0.0-walk_bob)*0.2
 	
@@ -95,7 +95,7 @@ func _integrate_forces(state):
 			state.linear_velocity.y+=((waterY+1)-position.y)*1
 			if !in_water:
 				in_water = true
-				$sfx_splash_in.play()
+				$sfx/sfx_splash_in.play()
 	else:
 		#stick to the ground (prevent slipping down slopes)
 		if (on_ground&&stick):
@@ -109,7 +109,7 @@ func _integrate_forces(state):
 					
 		if in_water:
 			in_water = false
-			$sfx_splash_out.play()
+			$sfx/sfx_splash_out.play()
 	if water||!(on_ground&&stick):
 		pos_save = null
 	last_pos = position
@@ -171,7 +171,11 @@ func _process(delta):
 			vec = vec.normalized()*boundary
 			global_position.x = vec.x
 			global_position.z = vec.y
-
+	
+	if !$sfx/sfx_birds.is_playing():
+		$sfx/sfx_birds.play()
+	if !$sfx/sfx_wind.is_playing():
+		$sfx/sfx_wind.play()
 #what object is the mouse hovering over
 func get_target():
 	if target and is_instance_valid(target):
@@ -226,7 +230,7 @@ func get_ground(state):
 			var clayer = state.get_contact_collider_object(contact).get_collision_layer()
 			if cpos.y<-0.6:
 				if !on_ground:
-					$sfx_land.play()
+					$sfx/sfx_land.play()
 				on_ground = true
 				return
 	on_ground = false
@@ -240,9 +244,9 @@ func _input(event):
 			interact()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		has_focus = true
-		$sfx_click_in.play()
+		#$sfx_click_in.play()
 	if event.is_action_released("click"):
-		$sfx_click_out.play()
+		pass#$sfx_click_out.play()
 	if event.is_action_pressed("quit"):
 		#get_tree().quit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

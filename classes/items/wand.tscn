@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dq5cnqdqoivsh"]
+[gd_scene load_steps=18 format=4 uid="uid://dq5cnqdqoivsh"]
 
 [ext_resource type="PackedScene" uid="uid://c0lkqtxdotuad" path="res://assets/models/wand.glb" id="1_0khkq"]
 [ext_resource type="Script" path="res://scripts/wand.gd" id="2_6yoww"]
@@ -6,8 +6,10 @@
 [ext_resource type="Material" uid="uid://bsu16fvs14x8h" path="res://assets/materials/glow.tres" id="4_351c3"]
 [ext_resource type="Material" uid="uid://b5hrr62f7rvjh" path="res://assets/materials/halo.tres" id="4_sqwg3"]
 [ext_resource type="Material" uid="uid://c8c6y4ptlebik" path="res://assets/materials/fx/bomb/fx_bomb_rays.tres" id="5_gmby2"]
+[ext_resource type="AudioStream" uid="uid://dagiuba7h0kjk" path="res://assets/audio/sparkler.wav" id="6_60571"]
 [ext_resource type="Shader" path="res://assets/shaders/fx_beam_shell.gdshader" id="6_v4ff7"]
 [ext_resource type="Material" uid="uid://cpsw7bksj8ihb" path="res://assets/materials/fx/wand/fx_wand_corona.tres" id="8_sqloo"]
+[ext_resource type="AudioStream" uid="uid://bdi5oyq3ray77" path="res://assets/audio/laser.wav" id="10_leo3v"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_x7nm2"]
 radius = 0.05
@@ -126,6 +128,10 @@ radial_accel_min = 0.1
 radial_accel_max = 0.1
 color_ramp = SubResource("Gradient_q55bw")
 
+[node name="sfx_impact" type="AudioStreamPlayer3D" parent="impact" index="3"]
+stream = ExtResource("6_60571")
+volume_db = -5.0
+
 [node name="beam" parent="." index="5" instance=ExtResource("3_63o8m")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, -0.4)
 
@@ -144,5 +150,9 @@ skeleton = NodePath("")
 transform = Transform3D(1.5, 0, 0, 0, -4.37114e-08, -1.5, 0, 1, -6.55671e-08, 0, 0, 0)
 material_override = ExtResource("8_sqloo")
 cast_shadow = 0
+
+[node name="sfx_laser" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("10_leo3v")
+volume_db = -10.0
 
 [editable path="beam"]

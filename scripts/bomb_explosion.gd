@@ -21,6 +21,9 @@ func _ready():
 	
 	$smoke.emitting = true
 	$rays.emitting = true
+	
+	$sfx_explosion.pitch_scale = randf_range(0.9,1.25)
+	$sfx_explosion.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

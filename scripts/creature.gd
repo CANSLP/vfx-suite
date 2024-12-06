@@ -41,6 +41,9 @@ func _ready():
 	face_mat = $head/face/tx.material_override
 	face_mat = face_mat.duplicate()
 	$head/face/tx.material_override = face_mat
+	
+	$sfx_noise.pitch_scale = randf_range(0.75,1.25)
+	$sfx_heat.volume_db = -80
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,6 +85,16 @@ func _process(delta):
 		get_parent().add_child(fx)
 		queue_free()
 	
+	if !$sfx_noise.is_playing():
+		$sfx_noise.play()
+	
+	if hurt:
+		$sfx_heat.volume_db = lerp($sfx_heat.volume_db,lerp(-40.0,-10.0,heat),delta*30)
+	else:
+		$sfx_heat.volume_db = lerp($sfx_heat.volume_db,-80.0,delta*5)
+	if !$sfx_heat.is_playing():
+		$sfx_heat.play()
+	
 	if global_position.y < -10:
 		queue_free()
 
@@ -94,7 +107,9 @@ func _integrate_forces(state):
 			var sp = 1.0
 			if seed < 0.5:
 				sp = -sp
-			target_position += Vector3(sin((4.0*PI*seed)+time*sp)*1.5,0,cos((4.0*PI*seed)+time*sp)*1.5)
+			var dist = (global_position-player.global_position).length()
+			var noise = 1.5 + dist*0.1
+			target_position += Vector3(sin((4.0*PI*seed)+time*sp)*noise,0,cos((4.0*PI*seed)+time*sp)*noise)
 		state.linear_velocity += ((target_position-global_position)*Vector3(1,0.25,1)).normalized()*walk_speed*(1-heat)
 	
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1yhtgplfxot1"]
+[gd_scene load_steps=7 format=3 uid="uid://d1yhtgplfxot1"]
 
 [ext_resource type="Script" path="res://scripts/bomb.gd" id="1_bhpnu"]
 [ext_resource type="PackedScene" uid="uid://cdpsuo4ubwrb4" path="res://assets/models/bomb.glb" id="1_heia3"]
 [ext_resource type="Material" uid="uid://dnr4ulqqw2wqf" path="res://assets/materials/fx/bomb/fx_bomb_seam.tres" id="2_bytvm"]
+[ext_resource type="AudioStream" uid="uid://bgfvvja6wndmo" path="res://assets/audio/fuse.wav" id="4_t0sxt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tnb4j"]
 bounce = 0.25
@@ -26,5 +27,10 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="seam_fx" parent="mesh" index="2"]
 material_override = ExtResource("2_bytvm")
+
+[node name="sfx_fuse" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_t0sxt")
+volume_db = -10.0
+attenuation_filter_db = -12.0
 
 [editable path="mesh"]

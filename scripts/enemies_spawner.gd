@@ -2,7 +2,8 @@ extends Node3D
 
 var spawning : bool = false
 
-var spawn_count = 5.0
+var spawn_count = 5
+var max_count = 15
 
 var timer : float
 
@@ -24,7 +25,7 @@ func _process(delta):
 			if count < spawn_count:
 				spawn()
 				timer = spawn_delay
-				if randf() < 0.25:
+				if spawn_count < max_count and randf() < 0.25:
 					spawn_count += 1
 					#print(spawn_count)
 	else:
